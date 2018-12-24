@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@import './app-theme';
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700|Source+Sans+Pro');
+
+// Include material core styles.
+@include mat-core();
+
+// Define the light theme.
+$primary: mat-palette($mat-grey, 900, 400, 900);
+$accent: mat-palette($mat-blue);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+@include material-sazalex-theme($theme);

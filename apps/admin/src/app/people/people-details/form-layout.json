@@ -1,0 +1,65 @@
+{
+  "type": "flex",
+  "fxLayoutGap": "20px",
+  "flex-flow": "row",
+  "items": [{
+      "type": "flex",
+      "fxFlex": "40%",
+      "flex-flow": "column",
+      "items": [{
+          "type": "flex",
+          "fxLayoutGap": "20px",
+          "flex-flow": "row wrap",
+          "items": [{
+              "key": "name",
+              "type": "text",
+              "title": "Name"
+            },
+            {
+              "key": "surname",
+              "type": "text",
+              "title": "Surname"
+            }
+          ]
+        },
+        "role",
+        {
+          "type": "flex",
+          "fxLayoutGap": "20px",
+          "flex-flow": "row wrap",
+          "items": [{
+              "key": "email",
+              "type": "email",
+              "title": "Email"
+            },
+            "phone"
+          ]
+        },
+        "image",
+        {
+          "key": "practices",
+          "add": "Add",
+          "items": {
+            "key": "practices[]",
+            "type": "text"
+          }
+        },
+        {
+          "type": "flex",
+          "fxLayoutGap": "20px",
+          "flex-flow": "row wrap",
+          "items": ["slug", "position"]
+        }
+      ]
+    },
+    {
+      "type": "flex",
+      "fxFlex": "60%",
+      "flex-flow": "column",
+      "items": [{
+        "key": "bio",
+        "type": "textarea"
+      }]
+    }
+  ]
+}

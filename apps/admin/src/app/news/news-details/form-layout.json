@@ -1,0 +1,32 @@
+{
+    "type": "flex",
+    "fxLayoutGap": "20px",
+    "flex-flow": "column",
+    "items": [
+      {
+        "key": "date",
+        "type": "date",
+        "title": "Date"
+      },
+      {
+        "key": "category",
+        "type": "text",
+        "title": "Category"
+      },
+      {
+        "key": "title",
+        "type": "text",
+        "title": "Title"
+      },
+      {
+        "key": "excerpt",
+        "type": "text",
+        "title": "Excerpt"
+      },
+      {
+        "key": "slug",
+        "type": "text",
+        "title": "Slug"
+      }
+    ]
+  }

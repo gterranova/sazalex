@@ -1,0 +1,26 @@
+@mixin footer-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  app-footer,
+  .footer {
+    background: mat-color($primary, 900);
+    color: mat-color($primary, 600);
+
+    a {
+      color: mat-color($primary, 400);
+      &:hover {
+        color: mat-color($primary, 300);
+      }
+    }    
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

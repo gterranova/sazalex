@@ -1,0 +1,24 @@
+<sazalex-hero-banner type="image" heading="We build teams that match your needs" subHeading="We bring together lawyers of the highest calibre with technical knowledge, industry experience and regional
+know-how to create a bespoke team to best meet the needs of each client." bgImage="people_landing.jpg"></sazalex-hero-banner>
+<br>
+<div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
+    <h1>Our Team</h1>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="80%" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxLayout="column" *ngFor="let person of people | async; let idx = index" fxLayoutAlign="center">
+        <img [style.marginTop]="'50px'" [style.marginBottom]="0" class="img-circle" style="max-width: 20%" style="padding-left: 50px; padding-right: 50px" [src]="person.image">
+        <h3 [style.marginBottom]="0">{{person.name}} {{person.surname}}</h3>
+        <h4 style="color: rgba(0,0,0,0.5);" [style.marginTop]="0">{{person.role}}</h4>
+        <p><i class="fas fa-phone"></i>&nbsp;&nbsp;{{person.phone}}
+          <br>
+          <a href="mailto:{{person.email}}" style="text-decoration: none; color: black"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{person.email}}</a></p>
+        <span>
+          <button mat-stroked-button  [routerLink]="['/people', person._id]">VIEW PROFILE &gt;</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

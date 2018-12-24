@@ -1,0 +1,83 @@
+<div class="md-editor-container" [class.fullscreen]="isFullScreen">
+  <div class="tool-bar" *ngIf="!hideToolbar && mode != 'preview'">
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle title="Bold" (click)="insertContent('Bold')" *ngIf="!_hideIcons.Bold">
+        <mat-icon>format_bold</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Italic" (click)="insertContent('Italic')" *ngIf="!_hideIcons.Italic">
+        <mat-icon>format_italic</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Heading" (click)="insertContent('Heading')" *ngIf="!_hideIcons.Heading">
+        <mat-icon>title</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Refrence" (click)="insertContent('Refrence')" *ngIf="!_hideIcons.Refrence">
+        <mat-icon>format_quote</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle title="Link" (click)="insertContent('Link')" *ngIf="!_hideIcons.Link">
+        <mat-icon>link</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Image" (click)="insertContent('Image')" *ngIf="!_hideIcons.Image">
+        <mat-icon>image</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle title="YouTube link" (click)="insertContent('Youtube')" *ngIf="!_hideIcons.Youtube">
+        <mat-icon svgIcon="youtube"></mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle title="Unordered List" (click)="insertContent('Ul')" *ngIf="!_hideIcons.Ul">
+        <mat-icon>format_list_bulleted</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Ordered List" (click)="insertContent('Ol')" *ngIf="!_hideIcons.Ol">
+        <mat-icon>format_list_numbered</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle title="Code Block" (click)="insertContent('Code')" *ngIf="!_hideIcons.Code">
+        <mat-icon>code</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle [attr.title]="showPreviewPanel ? 'Hide Preview' : 'Show Preview'" (click)="togglePreview()" *ngIf="!_hideIcons.TogglePreview">
+        <mat-icon>remove_red_eye</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <!--
+    <mat-button-toggle-group class="toggleGroup">
+      <mat-button-toggle title="Load last Backup" [disabled]="!isBackupAbleToBeLoaded" (click)="isBackupAbleToBeLoaded ? loadLastSave() : '' "
+        *ngIf="!_hideIcons.LoadLastSave">
+        <mat-icon>cloud_download</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-checkbox id="autosave" [(ngModel)]="autosave">Autosave</mat-checkbox>
+
+    <mat-button-toggle-group class="fullScreenButton">
+      <mat-button-toggle title="Load last Backup" (click)="fullScreen()" *ngIf="!_hideIcons.FullScreen">
+        <mat-icon>{{ isFullScreen ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    -->
+  </div>
+
+  <div class="editor-container">
+    <div [style.display]="mode == 'preview' ? 'none' : null">
+      <div class="editor-panel" [style.height]="height">
+        <div class="ace-editor" #aceEditor></div>
+      </div>
+    </div>
+    <div [style.display]="showPreviewPanel ? 'block' : 'none'" (click)="previewPanelClick($event)">
+      <div class="preview-panel" [innerHtml]="_previewHtml" [style.height]="height"></div>
+    </div>
+  </div>
+  <div *ngIf="maxlength > 0 && mode != 'preview'">
+    <div class="text-right md-footer">
+      {{ markdownValue?.length }} / {{ maxlength }}
+    </div>
+  </div>
+</div>

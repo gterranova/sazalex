@@ -1,0 +1,32 @@
+{
+  "type": "flex",
+  "fxLayoutGap": "20px",
+  "flex-flow": "column",
+  "items": [{
+      "type": "flex",
+      "flex-flow": "row wrap",
+      "items": [{
+          "key": "name",
+          "type": "text",
+          "title": "Name"
+        },
+        {
+          "key": "surname",
+          "type": "text",
+          "title": "Surname"
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "type": "email",
+      "title": "Email"
+    },
+    {
+      "key": "password",
+      "type": "password",
+      "title": "Password"
+    },
+    "superuser"
+  ]
+}

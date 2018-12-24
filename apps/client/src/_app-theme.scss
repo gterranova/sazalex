@@ -1,0 +1,87 @@
+@import '~@angular/material/theming';
+@import '../../../libs/ui/src/lib/components/footer/footer-theme';
+@import '../../../libs/ui/src/lib/components/hero-banner/hero-theme';
+@import '../../../libs/router-directives/src/lib/router-toolbar/router-toolbar.theme';
+
+// Styles for the docs app that are based on the current theme.
+@mixin material-sazalex-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .sazalex-background {
+    background: mat-color($background, background);
+  }
+
+  .header {
+    min-height: 500px;
+    height: 500px;
+    margin-top: 0;
+    background-size: cover;
+    background-position: center;
+
+    h1 {
+      margin-top: 0;
+      font-size: 45px;
+    }
+    &.primary {
+      background-color: mat-color($primary, A400);
+      color: mat-color($primary, default-contrast);
+    }
+    &.secondary {
+      background-color: mat-color($primary, darker);
+      color: mat-color($primary, default-contrast);
+    }
+  }
+  @include footer-theme($theme);
+  @include hero-theme($theme);
+  @include router-toolbar-theme($theme);
+
+  body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  h1,
+  h2 {
+    font-family: 'Noto Serif', serif;
+  }
+  h3, h4, h5 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  
+  .container {
+    text-align: center;
+    margin: auto;
+    z-index: 20000;
+    > .button-row {
+      > button {
+        font-family: 'Source Sans Pro', sans-serif;
+        & > .mat-button-focus-overlay {
+          background-color: transparent;
+        }
+        &:hover {
+          border-bottom: 1px solid !important;
+        }
+      }
+    }
+  }
+  
+  .news-container {
+    .no-shadow {
+      & > .tile {
+        margin-left: 20px;
+        margin-right: 20px;
+        box-shadow: none !important;
+      }
+    }
+    .ngucarousel-items {
+      margin: 0 5%;
+    }
+  }
+  
+  .img-circle {
+    border-radius: 50% !important;
+  }
+}

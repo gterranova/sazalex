@@ -1,0 +1,6 @@
+<div [ngClass]="type" fxLayout="row" fxLayoutGap="0.5%" fxLayoutAlign="center" [ngStyle]="setMyStyle()">
+    <div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <h1 [innerHtml]="heading | safe: 'html'"></h1>
+        <ng-content></ng-content>
+    </div>
+</div>

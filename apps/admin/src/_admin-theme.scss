@@ -1,0 +1,102 @@
+@import '~@angular/material/theming';
+@import '../../../libs/ui/src/lib/components/footer/footer-theme';
+@import '../../../libs/ui/src/lib/components/hero-banner/hero-theme';
+@import '../../../libs/router-directives/src/lib/router-toolbar/router-toolbar.theme';
+
+// Styles for the docs app that are based on the current theme.
+@mixin admin-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $icon-small-container-size: 24px;
+  $icon-small-size: 16px;
+
+  .list-container {
+    margin: 10px;
+  }
+
+  .details-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .mat-icon-button.small {
+    width: $icon-small-container-size;
+    height: $icon-small-container-size;
+    line-height: $icon-small-container-size;
+
+    .mat-icon,
+    .mat-icon-button i {
+      line-height: $icon-small-size;
+    }
+
+    .mat-icon {
+      width: $icon-small-size;
+      height: $icon-small-size;
+    }
+
+    .material-icons {
+      font-size: $icon-small-size;
+    }
+  }
+
+  mat-spinner {
+    margin: 0 40% 0;
+  }
+
+  .mat-cell,
+  .mat-header-cell,
+  .filter-panel {
+    font-size: 12px;
+  }
+
+  .filter-panel {
+    padding: 8px 30px 0;
+  }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 610px;
+  }
+
+  mat-row.mat-row {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .fab-container {
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    align-self: flex-end;
+    bottom: 5%;
+    right: 5%;
+    button[mat-fab] {
+      margin-right: 14px;
+    }
+  }
+
+  json-schema-form {
+    width: 100%;
+    material-button-widget div button {
+      width: 90%;
+    }
+    fieldset,
+    fieldset > legend {
+      padding-bottom: 20px !important;
+    }
+    textarea {
+      min-height: 400px;
+    }
+  }
+}

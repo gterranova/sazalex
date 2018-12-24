@@ -16,6 +16,21 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@sazalex/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@sazalex/datasource": [
+        "libs/datasource/src/index.ts"
+      ],
+      "@sazalex/router-directives": [
+        "libs/router-directives/src/index.ts"
+      ],
+      "@sazalex/auth": [
+        "libs/auth/src/index.ts"
+      ],
+      "@sazalex/markdown-editor": [
+        "libs/markdown-editor/src/index.ts"
+      ]
     }
   },
   "exclude": [

@@ -1,0 +1,11 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidedrawerId mode="over">
+      <sazalex-router-drawer-content></sazalex-router-drawer-content>
+  </mat-sidenav>
+
+  <mat-sidenav-content cdkScrollable>
+      <sazalex-router-toolbar></sazalex-router-toolbar>
+      <router-outlet></router-outlet>
+      <sazalex-footer></sazalex-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

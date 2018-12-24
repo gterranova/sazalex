@@ -1,0 +1,7 @@
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start stretch">
+  <div *ngIf="formActive" fxFlex="100%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
+    <json-schema-form [options]="jsonFormOptions" framework="material-design" 
+      [(form)]="jsonFormObject" [widgets]="myWidgets" (onSubmit)="onSubmit($event)">
+    </json-schema-form>
+  </div>
+</div>

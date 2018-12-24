@@ -1,0 +1,110 @@
+mat-toolbar,
+.mat-toolbar {
+  position: fixed !important;
+  opacity: 0.5 !important;
+}
+
+.bannerStyle h1 {
+  background-color: #ccc;
+  min-height: 300px;
+  text-align: center;
+  line-height: 300px;
+}
+
+.carousel-arrow {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0 20px;
+  color: #eee;
+  font-size: 40px;
+  border-radius: 999px;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+}
+
+.ngucarouselPoint {
+  list-style-type: none;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  left: 0;
+  box-sizing: border-box;
+
+  li {
+    display: inline-block;
+    border-radius: 999px;
+    background: #ccc;
+    padding: 5px;
+    margin: 0 3px;
+    transition: 0.4s ease all;
+
+    &.active {
+      background: #eee;
+      width: 10px;
+    }
+  }
+}
+
+.news-container {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  a {
+    color: #000;
+    h4 {
+      color: #50504c;
+    }
+    text-decoration: none;
+
+    &:hover {
+      color: #87867e;
+    }
+
+  }
+
+  .news-title {
+    font-size: 30px;
+  }
+
+  .news-text {
+    font-size: 18px;
+  }
+}
+
+.practice-container {
+  padding: 70px 8%;
+  text-align: center;
+
+  .practice-item {
+    a {
+      color: #000;
+      text-decoration: none;
+
+      .fas {
+        color: #50504c;
+      }
+
+      &:hover, &:hover .fas {
+        color: #87867e;
+        p { 
+          color: #000;
+        }
+      }
+
+    }
+  }
+}

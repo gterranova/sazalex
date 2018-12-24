@@ -1,0 +1,40 @@
+<div *ngIf="isLoading" class="mat-elevation-z8">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading && items" class="mat-elevation-z8 list-container">
+  <div fxLayout="column" *ngIf="showFilter" class="filter-panel">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start stretch">
+      <mat-form-field fxFill>
+        <input matInput (keyup)="applyFilter()" placeholder="Filter" [(ngModel)]="filterParams.fullText">
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-table #table [dataSource]="data" matSort (matSortChange)="sortData($event)">
+    <!-- Position Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-header></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="onDeleteClicked(element, $event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{column.label}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[column.name]}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row" (click)="onSelectRow(row)"
+      (mouseenter)="onHoverRow(row)">
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="length" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"></mat-paginator>
+</div>
+<div class="fab-container">
+  <button mat-fab [routerLink]="[collectionUrl,'new']">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

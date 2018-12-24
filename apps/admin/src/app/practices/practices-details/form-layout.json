@@ -1,0 +1,22 @@
+{
+    "type": "flex",
+    "fxLayoutGap": "20px",
+    "flex-flow": "column",
+    "items": [
+      {
+        "key": "name",
+        "type": "text",
+        "title": "Name"
+      },
+      {
+        "key": "content",
+        "type": "textarea",
+        "title": "Description"
+      },
+      {
+        "key": "slug",
+        "type": "text",
+        "title": "Slug"
+      }
+    ]
+  }

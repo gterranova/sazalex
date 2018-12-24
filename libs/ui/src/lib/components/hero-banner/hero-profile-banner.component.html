@@ -1,0 +1,12 @@
+<div class="secondary header" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="20%" fxLayoutAlign="start center">
+        <img class="img-circle" [src]="data.image">
+    </div>
+    <div fxFlex="60%" fxLayout="column wrap" fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <h1>{{data.name}} {{data.surname}}</h1>
+        <h4 style="color: rgba(255,255,255,0.5);" [style.marginTop]="0">{{data.role}}</h4>
+        <p><i class="fas fa-phone"></i>&nbsp;&nbsp;{{data.phone}}
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="mailto:{{data.email}}" style="text-decoration: none; color: white"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{data.email}}</a></p>
+    </div>
+</div>

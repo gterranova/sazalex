@@ -1,0 +1,177 @@
+{
+  "$id": "http://json-schema.org/draft-06/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "title": "Items",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "Email",
+          "pattern": "^\\S+@\\S+$"
+        },
+        "password": {
+          "type": "string",
+          "title": "Password",
+          "minLength": 8
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "surname": {
+          "type": "string",
+          "title": "Surname"
+        },
+        "superuser": {
+          "type": "boolean",
+          "title": "Superuser",
+          "default": false
+        }
+      }
+    },
+    "News": {
+      "type": "object",
+      "title": "Items",
+      "properties": {
+        "category": {
+          "type": "string",
+          "title": "Category",
+          "default": ""
+        },
+        "date": {  
+          "type": "string",
+          "title": "Date",
+          "default": ""
+        },
+        "title": {
+          "type": "string",
+          "title": "Title",
+          "default": "" 
+        },
+        "excerpt": {
+          "type": "string",
+          "title": "Excerpt",
+          "default": ""
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug",
+          "default": ""
+        }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "title": "Items",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "default": ""
+        },
+        "surname": {
+          "type": "string",
+          "title": "Surname",
+          "default": ""
+        },
+        "role": {
+          "type": "string",
+          "title": "Role",
+          "default": ""
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug",
+          "default": ""
+        },
+        "phone": {
+          "type": "string",
+          "title": "Phone",
+          "default": ""
+        },
+        "email": {
+          "type": "string",
+          "title": "Email",
+          "default": ""
+        },
+        "image": {
+          "type": "string",
+          "title": "Image",
+          "default": ""
+        },
+        "practices": {
+          "type": "array",
+          "title": "Practices",
+          "items": {    
+            "type": "string",
+            "title": "Items"
+          }
+        },
+        "bio": {
+          "type": "string",
+          "title": "Bio",
+          "default": ""
+        },
+        "position": {
+          "type": "integer",
+          "title": "Position #"
+        }
+      }
+    },
+    "Practice": {
+      "type": "object",
+      "title": "Items",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "default": ""
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug",
+          "default": ""
+        },
+        "content": {  
+          "type": "string",
+          "title": "Content",
+          "default": ""
+        }
+      }
+    }
+  },
+  "type": "object",
+  "title": "Root",
+  "properties": {
+    "users": {
+      "type": "array",
+      "title": "Users",
+      "items": {
+        "$ref": "#/definitions/User"
+      }
+    },
+    "news": {
+      "type": "array",
+      "title": "News",
+      "items": {
+        "$ref": "#/definitions/News"
+      }
+    },
+    "people": {
+      "type": "array",
+      "title": "People",
+      "items": {
+        "$ref": "#/definitions/Person"
+      }
+    },
+    "practices": {
+      "type": "array",
+      "title": "Practices",
+      "items": {
+        "$ref": "#/definitions/Practice"
+      }
+    }
+  }
+}

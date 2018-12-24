@@ -1,0 +1,45 @@
+<ng-container *ngIf="(activeMenuItem$ | async) as active">
+    <mat-toolbar *ngIf="!active.actionBarHidden" fxLayout="row" color="primary" 
+        [ngStyle]="getStyle()">
+        <span>
+            <ng-container *ngIf="showToolbarItemsInline; else elseTemplate">
+                <mat-icon></mat-icon>                
+            </ng-container>
+            <ng-template #elseTemplate>
+                <button #navButton *ngIf="active.navigationAction" mat-icon-button (click)="onNavButtonTap(active, $event)">
+                    <mat-icon>{{ active.navigationAction }}</mat-icon>
+                </button>                            
+            </ng-template>
+            
+            <ng-container *ngIf="active.logo; else elseTemplate">
+                <a [routerLink]="['/']"><img class="logo" [src]="active.logo"></a>                
+            </ng-container>
+            <ng-template #elseTemplate>
+                <span [innerHtml]="active.title"></span>                            
+            </ng-template>
+        </span>
+        <ng-container *ngIf="toolbarItems.length && showToolbarItemsInline; else elseTemplate">
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center" fxFlex="100%" style="flex-grow: 1">
+                <a [class.selected]="active.title == item.title" mat-menu-item *ngFor="let item of toolbarItems" (click)="onToolbarButtonTap(item)">
+                    {{item.title}}
+                </a>            
+            </div>  
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div style="flex-grow: 1"></div>                  
+        </ng-template>
+        <button mat-icon-button *ngFor="let action of active.actions" (click)="onToolbarButtonTap(action)">
+            <i [class]="'fa fa-'+action.icon"></i>
+        </button>
+        <button *ngIf="toolbarItems.length && !showToolbarItemsInline" mat-icon-button [mat-menu-trigger-for]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-menu x-position="before" #menu="matMenu">
+        <button *ngFor="let navItem of toolbarItems" mat-menu-item routerLinkActive="selected" (click)="onToolbarButtonTap(navItem)">
+            {{navItem.title}}
+        </button>
+    </mat-menu>
+    <div *ngIf="!active.opacityTopScrollPosition" class="mat-toolbar-spacer"></div>
+<ng-container>
+    

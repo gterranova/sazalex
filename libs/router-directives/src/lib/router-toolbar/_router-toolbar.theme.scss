@@ -1,0 +1,58 @@
+@mixin router-toolbar-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $toolbarHeight: 70px;
+
+  mat-toolbar {
+    justify-content: space-between;
+    vertical-align: middle;
+    height: $toolbarHeight!important;
+    max-height: $toolbarHeight!important;
+    z-index: 1000;
+    position: fixed;
+    a.mat-menu-item {
+      color: white; /*mat-color($primary, 100);*/
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+      &:hover {
+        color: #87867e; /* mat-color($primary, 300); */
+      }
+      &:active, &.selected {
+        font-weight: 800; 
+        color: white; /* mat-color($primary, 300); */
+      }
+    }
+
+    span {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  mat-toolbar > span > *,
+  img.logo {
+    vertical-align: middle;
+  }
+
+  mat-toolbar > button > i {
+    font-size: 20px;
+  }
+
+  mat-sidenav-container {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .mat-toolbar-spacer {
+    padding-top: $toolbarHeight;
+    width: 100%;
+    height: 0;
+  }
+}

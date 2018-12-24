@@ -1,0 +1,55 @@
+@mixin hero-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  sazalex-hero-banner,
+  sazalex-hero-profile-banner {
+    & > div {
+      min-height: 500px;
+      height: 500px;
+      padding: 70px 10%;
+      color: mat-color($primary, default-contrast);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 45px;
+      font-weight: 400;
+    }
+    h3 {
+      font-size: 30px;
+      font-weight: 400;
+      color: mat-color($primary, lighter);
+    }
+  }
+
+  sazalex-hero-banner {
+    & > div {
+      text-align: center;
+    }
+    .primary {
+      background: mat-color($primary, lighter);
+      /* background-image: linear-gradient(mat-color($primary, A100), mat-color($primary, A400)); */
+    }
+    .image {
+    }
+    .secondary {
+      background: mat-color($primary, darker);
+      /* background-image: linear-gradient(mat-color($primary, A400), mat-color($primary, A700)); */
+      /* color: mat-color($primary, darker-contrast); */
+    }
+    .accent-primary {
+      background: mat-color($accent, lighter);
+      /* background-image: linear-gradient(mat-color($primary, A400), mat-color($primary, A700)); */
+      color: mat-color($accent, lighter-contrast);
+    }
+    .accent-secondary {
+      background: mat-color($accent, darker);
+      /* background-image: linear-gradient(mat-color($primary, A400), mat-color($primary, A700)); */
+      color: mat-color($accent, darker-contrast);
+    }
+  }
+}

@@ -7,5 +7,49 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "client": {
+      "tags": [
+        "web"
+      ]
+    },
+    "client-e2e": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "datasource": {
+      "tags": []
+    },
+    "server": {
+      "tags": [
+        "server"
+      ]
+    },
+    "server-e2e": {
+      "tags": []
+    },
+    "router-directives": {
+      "tags": [
+        "shared"
+      ]
+    },
+    "auth": {
+      "tags": []
+    },
+    "admin": {
+      "tags": [
+        "admin"
+      ]
+    },
+    "admin-e2e": {
+      "tags": []
+    },
+    "markdown-editor": {
+      "tags": [
+        "admin"
+      ]
+    }
+  }
 }

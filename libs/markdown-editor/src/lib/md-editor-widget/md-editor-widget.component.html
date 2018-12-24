@@ -1,0 +1,10 @@
+<p [innerHtml]="options?.notitle ? options?.placeholder : options?.title"></p>
+<sazalex-md-editor *ngIf="boundControl" [formControl]="formControl" [attr.aria-describedby]="'control' + layoutNode?._id + 'Status'"
+  [attr.list]="'control' + layoutNode?._id + 'Autocomplete'" [attr.maxlength]="options?.maxLength" [attr.minlength]="options?.minLength"
+  [attr.pattern]="options?.pattern" [attr.required]="options?.required" [id]="'control' + layoutNode?._id"
+  [style.width]="'100%'" (blur)="options.showErrors = true"></sazalex-md-editor>
+<sazalex-md-editor *ngIf="!boundControl" [formControl]="formControl" [attr.aria-describedby]="'control' + layoutNode?._id + 'Status'" [attr.list]="'control' + layoutNode?._id + 'Autocomplete'"
+  [attr.maxlength]="options?.maxLength" [attr.minlength]="options?.minLength" [attr.pattern]="options?.pattern"
+  [attr.required]="options?.required" [id]="'control' + layoutNode?._id" [style.width]="'100%'" [id]="'control' + layoutNode?._id" [markdownValue]="controlValue" (textChanged)="updateValue($event)" (blur)="options.showErrors = true"></sazalex-md-editor>
+<mat-hint *ngIf="options?.description && (!options?.showErrors || !options?.errorMessage)" align="end" [innerHTML]="options?.description"></mat-hint>
+<mat-error *ngIf="options?.showErrors && options?.errorMessage" [innerHTML]="options?.errorMessage"></mat-error>
