@@ -10,6 +10,22 @@ export interface User {
     _id?: string;
 }
 
+export interface Page {
+    type: string;
+    title: string;
+    slug: string;
+    navigationAction: string;
+    logo: string;
+    backLink: string;
+    icon: string;
+    showAsPopupActionItem: boolean;
+    showAsDrawerItem: boolean;
+    actionBarHidden: boolean;
+    actionItemsHidden: boolean;
+    opacityTopScrollPosition: number;
+    _id?: string;
+}
+
 export interface News {
     category: string;
     date: string;
@@ -42,6 +58,7 @@ export interface Practice {
 
 export interface Root {
     users: User[];
+    pages: Page[];
     news: News[];
     people: Person[];
     practices: Practice[];
@@ -107,6 +124,46 @@ export abstract class BaseApi {
 
     public deleteUsers(usersId: string, params?: any): Observable<void> {
         return this.request('delete', `/users/${usersId}`, params);
+    }
+
+    public pushPages(value: Page, params?: any): Observable<Page> {
+        return this.request('push', `/pages`, value, params);
+    }
+
+    public getAllPages(params?: any): Observable<Page[]> {
+        return this.request('get', `/pages`, params);
+    }
+
+    public getAllPagesSchema(params?: any): Observable<any> {
+        return this.request('get', `/pages`, { ...params, schema: true});
+    }
+
+    public setAllPages(value: Page[], params?: any): Observable<void> {
+        return this.request('set', `/pages`, value, params);
+    }
+
+    public deleteAllPages(params?: any): Observable<void> {
+        return this.request('delete', `/pages`, params);
+    }
+
+    public getPages(pagesId: string, params?: any): Observable<Page> {
+        return this.request('get', `/pages/${pagesId}`, params);
+    }
+
+    public getPagesSchema(pagesId: string, params?: any): Observable<any> {
+        return this.request('get', `/pages/${pagesId}`, { ...params, schema: true});
+    }
+
+    public setPages(pagesId: string, value: Page, params?: any): Observable<void> {
+        return this.request('set', `/pages/${pagesId}`, value, params);
+    }
+
+    public updatePages(pagesId: string, value: Page, params?: any): Observable<Page> {
+        return this.request('update', `/pages/${pagesId}`, value, params);
+    }
+
+    public deletePages(pagesId: string, params?: any): Observable<void> {
+        return this.request('delete', `/pages/${pagesId}`, params);
     }
 
     public pushNews(value: News, params?: any): Observable<News> {
@@ -187,6 +244,26 @@ export abstract class BaseApi {
 
     public deletePeople(peopleId: string, params?: any): Observable<void> {
         return this.request('delete', `/people/${peopleId}`, params);
+    }
+
+    public pushPeoplePractices(peopleId: string, value: string, params?: any): Observable<string> {
+        return this.request('push', `/people/${peopleId}/practices`, value, params);
+    }
+
+    public getAllPeoplePractices(peopleId: string, params?: any): Observable<string[]> {
+        return this.request('get', `/people/${peopleId}/practices`, params);
+    }
+
+    public getAllPeoplePracticesSchema(peopleId: string, params?: any): Observable<any> {
+        return this.request('get', `/people/${peopleId}/practices`, { ...params, schema: true});
+    }
+
+    public setAllPeoplePractices(peopleId: string, value: string[], params?: any): Observable<void> {
+        return this.request('set', `/people/${peopleId}/practices`, value, params);
+    }
+
+    public deleteAllPeoplePractices(peopleId: string, params?: any): Observable<void> {
+        return this.request('delete', `/people/${peopleId}/practices`, params);
     }
 
     public pushPractices(value: Practice, params?: any): Observable<Practice> {

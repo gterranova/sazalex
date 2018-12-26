@@ -11,6 +11,9 @@ import { DatasourceModule } from '@sazalex/datasource';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DynamicPagesModule } from '@sazalex/dynamic-pages';
+import { DynamicPageComponent } from 'libs/dynamic-pages/src/lib/dynamic-page.component';
+import { PathResolveService, TypeResolveService, PageResolveService } from './app.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +26,11 @@ import { HttpClientModule } from '@angular/common/http';
     MarkdownModule.forRoot(),
     UiModule.forRoot(),
     DatasourceModule.forRoot(),
-    RouterDirectivesModule.forRoot()
+    RouterDirectivesModule.forRoot(),
+    DynamicPagesModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [TypeResolveService, PageResolveService, PathResolveService],
+  entryComponents: [DynamicPageComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

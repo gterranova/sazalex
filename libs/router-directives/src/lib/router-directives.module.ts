@@ -15,6 +15,7 @@ import { RouterToolbarComponent } from './router-toolbar/router-toolbar.componen
 import { RouterDrawerContentComponent } from './router-drawer-content/router-drawer-content.component';
 import { RouterModule } from '@angular/router';
 import { RouteChangeService } from './route-change.service';
+import { DatasourceModule } from '@sazalex/datasource';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { RouteChangeService } from './route-change.service';
     FormsModule,
     UiModule,
     ScrollDispatchModule,
-    RouterModule
+    RouterModule,
+    DatasourceModule
   ],
   declarations: [RouterToolbarComponent, RouterDrawerContentComponent],
   exports: [

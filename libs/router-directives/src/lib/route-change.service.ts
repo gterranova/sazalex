@@ -1,8 +1,9 @@
 import { Injectable, Inject, Optional } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { zip, filter, map } from 'rxjs/operators';
 import { RouterDrawerActions } from './router-drawer-content/router-drawer-actions.interface';
+import { DatasourceService, Page } from '@sazalex/datasource';
 
 export interface MenuItem {
   path: string;
@@ -26,6 +27,7 @@ export interface MenuItem {
   providedIn: 'root'
 })
 export class RouteChangeService {
+  pages: Page[] = [];
   activeMenuItem$: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>({
     path: '',
     title: '',
@@ -36,17 +38,19 @@ export class RouteChangeService {
   drawerHolder: RouterDrawerActions;
   closeDrawerOnRouteChange: boolean = true;
 
-  constructor(private router: Router /*, private titleService: Title*/) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    private dataSourceService: DatasourceService /*, private titleService: Title*/) {
     // router.events.subscribe((event: RouterEvent) => {
     //  this.navigationInterceptor(event)
     // })
+    this.dataSourceService.getAllPages().subscribe(pages => this.pages = pages);
     this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),
-        map(_ => this.router.routerState.root)
+        map(_ => this.route.snapshot.firstChild)
       )
-      .subscribe(route => {
-        let active = this.lastRouteWithMenuItem(route.root);
+      .subscribe((route: ActivatedRouteSnapshot) => {
+        let active = route.data && route.data['page-info'] ? <MenuItem>route.data['page-info'] : undefined;
         if (!active) {
           active = this.activeMenuItem$.getValue();
         }
@@ -110,36 +114,49 @@ export class RouteChangeService {
   }
 
   getMenuItems(): MenuItem[] {
+    return this.pages.filter(page => {
+      return /-page$/.test(page.type) && page.title && page.showAsPopupActionItem;
+    }).map(page => <MenuItem>{...page, path: page.type.replace(/-page$/, '')});
+    /*
     return (
       this.router.config
         // only add a menu item for routes with a title set.
         .filter(route => {
-          const hash = this.hash(route.data);
+          const { data={}} = route;
+          const hash = this.hash(data['page-info']);
           return (
-            route.data &&
-            route.data.title &&
-            !!route.data.showAsPopupActionItem &&
+            data['page-info'] &&
+            data['page-info'].title &&
+            !!data['page-info'].showAsPopupActionItem &&
             hash !== this.activeMenuItem$.getValue().hash
           );
         })
         .map(route => {
-          return <MenuItem>Object.assign({ path: route.path }, route.data);
+          return <MenuItem>Object.assign({ path: route.path }, route.data['page-info']);
         })
     );
+    */
   }
 
   getDrawerItems(): MenuItem[] {
+    return this.pages.filter(page => {
+      return /-page$/.test(page.type) && page.title && page.showAsDrawerItem;
+    }).map(page => <MenuItem>{...page, path: page.type.replace(/-page$/, '')});
+    /*
     return (
       this.router.config
         // only add a menu item for routes with a title set.
         .filter(
-          route =>
-            route.data && route.data.title && !!route.data.showAsDrawerItem
+          route => {
+            const { data={}} = route;
+            return data['page-info'] && data['page-info'].title && !!data['page-info'].showAsDrawerItem;
+          }
         )
         .map(route => {
-          return <MenuItem>Object.assign({ path: route.path }, route.data);
+          return <MenuItem>Object.assign({ path: route.path }, route.data['page-info']);
         })
     );
+    */
   }
 
   onDrawerButtonTap(drawerItem: MenuItem): boolean {
@@ -165,7 +182,7 @@ export class RouteChangeService {
       }
     }
   }
-
+  /*
   private lastRouteWithMenuItem(route: ActivatedRoute): MenuItem {
     let lastMenu: MenuItem;
     do {
@@ -175,25 +192,26 @@ export class RouteChangeService {
       Object.assign({ path: '', opacityTopScrollPosition: 0 }, lastMenu)
     );
   }
-
-  private extractMenu(route: ActivatedRoute): MenuItem {
-    const cfg = route.routeConfig;
-    return cfg && cfg.data ? <MenuItem>cfg.data : undefined;
+  
+  private extractMenu(route: ActivatedRouteSnapshot): MenuItem {
+    const cfg = route.data;
+    console.log("extractMenu", cfg);
+    return cfg && cfg['page-info'] ? <MenuItem>cfg['page-info'] : undefined;
   }
-
+  */
   private hash(s) {
     if (!s) {
       return '';
     }
     s = JSON.stringify(s);
-    /* Simple hash function. */
+    // Simple hash function
     let a = 1,
       c = 0,
       h,
       o;
     if (s) {
       a = 0;
-      /*jshint plusplus:false bitwise:false*/
+      // jshint plusplus:false bitwise:false
       for (h = s.length - 1; h >= 0; h--) {
         o = s.charCodeAt(h);
         // tslint:disable-next-line:no-bitwise
@@ -206,4 +224,5 @@ export class RouteChangeService {
     }
     return String(a);
   }
+  
 }

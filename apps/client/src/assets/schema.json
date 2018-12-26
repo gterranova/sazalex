@@ -2,6 +2,66 @@
   "$id": "http://json-schema.org/draft-06/schema#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
+    "Page": {
+      "type": "object",
+      "title": "Page",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type"
+        },
+        "title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug",
+          "default": ""
+        },
+        "navigationAction": {
+          "type": "string",
+          "title": "Navigation Action"
+        },
+        "logo": {
+          "type": "string",
+          "title": "Logo"
+        },
+        "backLink": {
+          "type": "string",
+          "title": "Back Link"
+        },
+        "icon": {
+          "type": "string",
+          "title": "Icon"
+        },
+        "showAsPopupActionItem": {
+          "type": "boolean",
+          "title": "Show as Popup Action",
+          "default": false
+        },
+        "showAsDrawerItem": {
+          "type": "boolean",
+          "title": "Show as Drawer Item",
+          "default": false
+        },
+        "actionBarHidden": {
+          "type": "boolean",
+          "title": "Actionbar Hidden",
+          "default": false
+        },
+        "actionItemsHidden": {
+          "type": "boolean",
+          "title": "Action Items Hidden",
+          "default": false
+        },
+        "opacityTopScrollPosition": {
+          "type": "integer",
+          "title": "Opacity Top Scroll Position",
+          "default": 150
+        }
+      }
+    },
     "User": {
       "type": "object",
       "title": "Items",
@@ -152,6 +212,13 @@
         "$ref": "#/definitions/User"
       }
     },
+    "pages": {
+      "type": "array",
+      "title": "Pages",
+      "items": {
+        "$ref": "#/definitions/Page"
+      }
+    },    
     "news": {
       "type": "array",
       "title": "News",

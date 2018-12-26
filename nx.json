@@ -50,6 +50,9 @@
       "tags": [
         "admin"
       ]
+    },
+    "dynamic-pages": {
+      "tags": []
     }
   }
 }

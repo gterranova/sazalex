@@ -17,12 +17,14 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: {
-      title: 'Login',
-      icon: 'menu',
-      actionBarHidden: true,
-      showAsPopupActionItem: false,
-      showAsDrawerItem: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'Login',
+        icon: 'menu',
+        actionBarHidden: true,
+        showAsPopupActionItem: false,
+        showAsDrawerItem: false,
+        actionItemsHidden: false
+      }
     }
   }
   /*

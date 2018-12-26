@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './router-toolbar.component.html'
 })
 export class RouterToolbarComponent implements OnInit {
+  @Input() showNavigationAction = true;
   @Input() showToolbarItemsInline = true;
   toolbarItems: MenuItem[];
   activeMenuItem$: Observable<MenuItem>;
@@ -30,16 +31,11 @@ export class RouterToolbarComponent implements OnInit {
   ) {
     this.activeMenuItem$ = menuService.activeMenuItem.pipe(
       tap((active: MenuItem) => {
-        this.drawerItems = !!active.actionItemsHidden
-        ? []
-        : menuService.getDrawerItems();
-        // console.log(active);
         this.setupOpacity(active);
         this.toolbarItems = !!active.actionItemsHidden
           ? []
           : menuService
-              .getMenuItems()
-              .filter(item => item.path !== active.path);
+              .getMenuItems();
         return active;
       })
     );

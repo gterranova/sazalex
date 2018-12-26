@@ -1,5 +1,0 @@
-<mat-nav-list>
-  <h4 matSubheader [innerHtml]="title"></h4>
-  <a mat-list-item *ngFor="let practice of practices | async" [routerLink]="[ '/practice-areas', practice._id ]">{{
-      practice.name }}</a>
-</mat-nav-list>

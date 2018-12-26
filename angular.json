@@ -412,6 +412,34 @@
           }
         }
       }
+    },
+    "dynamic-pages": {
+      "root": "libs/dynamic-pages",
+      "sourceRoot": "libs/dynamic-pages/src",
+      "projectType": "library",
+      "prefix": "sazalex",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/dynamic-pages/tsconfig.lib.json",
+              "libs/dynamic-pages/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/dynamic-pages/jest.config.js",
+            "tsConfig": "libs/dynamic-pages/tsconfig.spec.json",
+            "setupFile": "libs/dynamic-pages/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {

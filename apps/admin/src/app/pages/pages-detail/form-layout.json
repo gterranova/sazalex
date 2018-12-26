@@ -1,0 +1,67 @@
+{
+    "type": "flex",
+    "fxLayoutGap": "20px",
+    "flex-flow": "column",
+    "items": [
+        {
+            "key": "title",
+            "type": "text",
+            "title": "Title"
+        },
+        {
+            "key": "slug",
+            "type": "text",
+            "title": "Slug"
+        },
+        {
+            "key": "type",
+            "type": "text",
+            "title": "Type"
+        },
+        {
+            "key": "navigationAction",
+            "type": "text",
+            "title": "Navigation Action"
+        },
+        {
+            "key": "logo",
+            "type": "text",
+            "title": "logo"
+        },
+        {
+            "key": "backLink",
+            "type": "text",
+            "title": "Back Link"
+        },
+        {
+            "key": "icon",
+            "type": "text",
+            "title": "Icon"
+        },
+        {
+            "key": "showAsPopupActionItem",
+            "type": "boolean",
+            "title": "Show as Popup Action"
+        },        
+        {
+            "key": "showAsDrawerItem",
+            "type": "boolean",
+            "title": "Show as Drawer Item"
+        },        
+        {
+            "key": "actionBarHidden",
+            "type": "boolean",
+            "title": "Actionbar Hidden"
+        },        
+        {
+            "key": "actionItemsHidden",
+            "type": "boolean",
+            "title": "Action Items Hidden"
+        },        
+        {
+            "key": "opacityTopScrollPosition",
+            "type": "integer",
+            "title": "Opacity Top Scroll Position"
+        }
+    ]
+}

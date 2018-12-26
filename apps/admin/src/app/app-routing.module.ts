@@ -13,13 +13,15 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './dashboard/dashboard.module#DashboardModule',
     data: {
-      title: 'Dashboard',
-      navigationAction: 'menu',
-      icon: 'home',
-      showAsPopupActionItem: false,
-      showAsDrawerItem: true,
-      actionBarHidden: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'Dashboard',
+        navigationAction: 'menu',
+        icon: 'home',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false  
+      }
     }
   },
   {
@@ -28,14 +30,34 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './users/users.module#UsersModule',
     data: {
-      title: 'Users',
-      navigationAction: 'arrow_back',
-      icon: 'users',
-      backLink: '/',
-      showAsPopupActionItem: false,
-      showAsDrawerItem: true,
-      actionBarHidden: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'Users',
+        navigationAction: 'arrow_back',
+        icon: 'users',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
+    path: 'pages',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './pages/pages.module#PagesModule',
+    data: {
+      "page-info": {
+        title: 'Pages',
+        navigationAction: 'arrow_back',
+        icon: 'users',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
     }
   },
   {
@@ -44,14 +66,16 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './people/people.module#PeopleModule',
     data: {
-      title: 'Professionals',
-      navigationAction: 'arrow_back',
-      icon: 'users',
-      backLink: '/',
-      showAsPopupActionItem: false,
-      showAsDrawerItem: true,
-      actionBarHidden: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'Professionals',
+        navigationAction: 'arrow_back',
+        icon: 'users',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
     }
   },
   {
@@ -60,14 +84,16 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './practices/practices.module#PracticesModule',
     data: {
-      title: 'Practice Areas',
-      navigationAction: 'arrow_back',
-      icon: 'info',
-      backLink: '/',
-      showAsPopupActionItem: false,
-      showAsDrawerItem: true,
-      actionBarHidden: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'Practice Areas',
+        navigationAction: 'arrow_back',
+        icon: 'info',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
     }
   },
   {
@@ -76,14 +102,16 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './news/news.module#NewsModule',
     data: {
-      title: 'News',
-      navigationAction: 'arrow_back',
-      icon: 'info',
-      backLink: '/',
-      showAsPopupActionItem: false,
-      showAsDrawerItem: true,
-      actionBarHidden: false,
-      actionItemsHidden: false
+      "page-info": {
+        title: 'News',
+        navigationAction: 'arrow_back',
+        icon: 'info',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
     }
   },
   {
