@@ -19,7 +19,7 @@ mat-toolbar,
   width: 20px;
   height: 20px;
   padding: 0 20px;
-  color: #eee;
+  color: #87867e;
   font-size: 40px;
   border-radius: 999px;
 
@@ -41,61 +41,39 @@ mat-toolbar,
   overflow: auto;
   position: absolute;
   width: 100%;
-  bottom: 20px;
+  bottom: -30px;
   left: 0;
   box-sizing: border-box;
 
   li {
     display: inline-block;
     border-radius: 999px;
-    background: #ccc;
+    background: #87867e;
     padding: 5px;
     margin: 0 3px;
     transition: 0.4s ease all;
 
     &.active {
-      background: #eee;
+      background: #008a93;
       width: 10px;
     }
   }
 }
 
-.news-container {
-  padding-top: 70px;
-  padding-bottom: 70px;
-  a {
-    color: #000;
-    h4 {
-      color: #50504c;
-    }
-    text-decoration: none;
-
-    &:hover {
-      color: #87867e;
-    }
-
-  }
-
-  .news-title {
-    font-size: 30px;
-  }
-
-  .news-text {
-    font-size: 18px;
-  }
-}
-
 .practice-container {
-  padding: 70px 8%;
-  text-align: center;
-
+    p {
+      font-size: 20px;
+    }
   .practice-item {
     a {
       color: #000;
       text-decoration: none;
-
+      font-size: 20px;
       .fas {
-        color: #50504c;
+        color: #025e68;
+        width: 65px;
+        height: 65px;
+        text-align: center;
       }
 
       &:hover, &:hover .fas {
@@ -104,7 +82,6 @@ mat-toolbar,
           color: #000;
         }
       }
-
     }
   }
 }

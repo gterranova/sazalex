@@ -33,6 +33,9 @@
       ],
       "@sazalex/dynamic-pages": [
         "libs/dynamic-pages/src/index.ts"
+      ],
+      "@sazalex/file-manager": [
+        "libs/file-manager/src/index.ts"
       ]
     }
   },

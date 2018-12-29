@@ -5,7 +5,10 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  $toolbarHeight: 70px;
+  $toolbarHeight: 85px;
+  $toolbarTextColor: #87867e;
+  $toolbarTextActiveColor: #008a93;
+  $toolbarPadding: 0 7.5%;
 
   mat-toolbar {
     justify-content: space-between;
@@ -14,16 +17,18 @@
     max-height: $toolbarHeight!important;
     z-index: 1000;
     position: fixed;
+    padding: $toolbarPadding!important;
+
     a.mat-menu-item {
-      color: white; /*mat-color($primary, 100);*/
+      color: $toolbarTextColor;
       font-family: 'Source Sans Pro', sans-serif;
       font-size: 18px;
       &:hover {
-        color: #87867e; /* mat-color($primary, 300); */
+        color: $toolbarTextColor; /* mat-color($primary, 300); */
       }
       &:active, &.selected {
         font-weight: 800; 
-        color: white; /* mat-color($primary, 300); */
+        color: $toolbarTextActiveColor; /* mat-color($primary, 300); */
       }
     }
 
@@ -39,7 +44,7 @@
   }
 
   mat-toolbar > button > i {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   mat-sidenav-container {

@@ -11,20 +11,18 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .sazalex-background {
-    background: mat-color($background, background);
-  }
+  $pagePadding: 0 7.5%;
 
   .header {
-    min-height: 500px;
-    height: 500px;
+    min-height: 450px;
+    height: 450px;
     margin-top: 0;
     background-size: cover;
     background-position: center;
 
     h1 {
       margin-top: 0;
-      font-size: 45px;
+      font-size: 36px;
     }
     &.primary {
       background-color: mat-color($primary, A400);
@@ -42,13 +40,27 @@
   body {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    background: #efede9;
   }
+  h1 { font-size: 36px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 28px; }
+  h4 { font-size: 22px; }
+  h5 { font-size: 20px; }
   h1,
   h2 {
     font-family: 'Noto Serif', serif;
   }
   h3, h4, h5 {
     font-family: 'Source Sans Pro', sans-serif;
+  }
+  h1, h2, h3, h4, h5 { color: #025e68; }
+  .mat-drawer-content {
+    background: #efede9;
+  }
+  .dynamic-page {
+    padding: $pagePadding;
   }
   
   .container {
@@ -67,18 +79,47 @@
       }
     }
   }
-  
   .news-container {
-    .no-shadow {
-      & > .tile {
-        margin-left: 20px;
-        margin-right: 20px;
-        box-shadow: none !important;
+    .ngucarousel {
+      /* padding: 0 7.5%; */
+      .no-shadow {
+        & > .tile {
+          box-shadow: none !important;
+        }
+      }
+      .ngucarousel-items {
+        & > .item {
+          & > .tile {
+            padding: 20px;
+            background-color: #dddcda;
+          }
+        }
       }
     }
-    .ngucarousel-items {
-      margin: 0 5%;
+    padding-bottom: 70px;
+    a {
+      color: #000;
+      h2 {
+        color: #50504c;
+      }
+      text-decoration: none;
+  
+      &:hover {
+        color: #87867e;
+      }
     }
+
+    .news-category {
+      margin-top: 0;
+    }
+  
+    .news-title {
+      font-size: 28px;
+    }
+  
+    .news-text {
+      font-size: 20px;
+    }  
   }
   
   .img-circle {

@@ -14,7 +14,7 @@ export class DatasourceService extends BaseApi {
   constructor(private http: HttpClient) {
     super();
   }
-
+  /*
   public getAllNews(params?: any): Observable<News[]> {
     return <Observable<News[]>>of(MockData['news']);
   }
@@ -37,7 +37,7 @@ export class DatasourceService extends BaseApi {
   public getPractices(practicesId: string, params?: any): Observable<Practice> {
     return <Observable<Practice>>of(MockData['practices'].find(d => d._id === practicesId));
   }
-
+  */
   private createRequestHeader() {
     // set headers here e.g.
     const headers = new HttpHeaders({

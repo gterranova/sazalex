@@ -56,12 +56,21 @@ export interface Practice {
     _id?: string;
 }
 
+export interface FileElement {
+    name: string;
+    slug: string;
+    parent: string;
+    isFolder: boolean;
+    _id?: string;
+}
+
 export interface Root {
     users: User[];
     pages: Page[];
     news: News[];
     people: Person[];
     practices: Practice[];
+    files: FileElement[];
     _id?: string;
 }
 
@@ -304,6 +313,46 @@ export abstract class BaseApi {
 
     public deletePractices(practicesId: string, params?: any): Observable<void> {
         return this.request('delete', `/practices/${practicesId}`, params);
+    }
+
+    public pushFiles(value: FileElement, params?: any): Observable<FileElement> {
+        return this.request('push', `/files`, value, params);
+    }
+
+    public getAllFiles(params?: any): Observable<FileElement[]> {
+        return this.request('get', `/files`, params);
+    }
+
+    public getAllFilesSchema(params?: any): Observable<any> {
+        return this.request('get', `/files`, { ...params, schema: true});
+    }
+
+    public setAllFiles(value: FileElement[], params?: any): Observable<void> {
+        return this.request('set', `/files`, value, params);
+    }
+
+    public deleteAllFiles(params?: any): Observable<void> {
+        return this.request('delete', `/files`, params);
+    }
+
+    public getFiles(filesId: string, params?: any): Observable<FileElement> {
+        return this.request('get', `/files/${filesId}`, params);
+    }
+
+    public getFilesSchema(filesId: string, params?: any): Observable<any> {
+        return this.request('get', `/files/${filesId}`, { ...params, schema: true});
+    }
+
+    public setFiles(filesId: string, value: FileElement, params?: any): Observable<void> {
+        return this.request('set', `/files/${filesId}`, value, params);
+    }
+
+    public updateFiles(filesId: string, value: FileElement, params?: any): Observable<FileElement> {
+        return this.request('update', `/files/${filesId}`, value, params);
+    }
+
+    public deleteFiles(filesId: string, params?: any): Observable<void> {
+        return this.request('delete', `/files/${filesId}`, params);
     }
 
     protected abstract request(method: string, itemPath: string, value?: any, params?: any);

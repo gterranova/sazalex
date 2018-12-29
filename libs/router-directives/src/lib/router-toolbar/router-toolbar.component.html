@@ -2,15 +2,12 @@
     <mat-toolbar *ngIf="!active.actionBarHidden" fxLayout="row" color="primary" 
         [ngStyle]="getStyle()">
         <span>
-            <ng-container *ngIf="!showNavigationAction; else elseNavActionTemplate">
-                <mat-icon></mat-icon>                
-            </ng-container>
-            <ng-template #elseNavActionTemplate>
+            <ng-container *ngIf="showNavigationAction">
                 <button #navButton *ngIf="active.navigationAction" mat-icon-button (click)="onNavButtonTap(active, $event)">
                     <mat-icon>{{ active.navigationAction }}</mat-icon>
                 </button>                            
-            </ng-template>
-            
+            </ng-container>
+
             <ng-container *ngIf="active.logo; else elseLogoTemplate">
                 <a [routerLink]="['/']"><img class="logo" [src]="active.logo"></a>                
             </ng-container>

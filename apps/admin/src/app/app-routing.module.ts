@@ -115,6 +115,24 @@ export const AppRoutes: Routes = [
     }
   },
   {
+    path: 'files',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './files/files.module#FilesModule',
+    data: {
+      "page-info": {
+        title: 'Files',
+        navigationAction: 'arrow_back',
+        icon: 'info',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

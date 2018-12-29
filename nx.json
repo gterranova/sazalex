@@ -53,6 +53,9 @@
     },
     "dynamic-pages": {
       "tags": []
+    },
+    "file-manager": {
+      "tags": []
     }
   }
 }

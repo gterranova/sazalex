@@ -91,6 +91,28 @@
         }
       }
     },
+    "FileElement": {
+      "type": "object",
+      "title": "File",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug"
+        },
+        "parent": {
+          "type": "string",
+          "title": "Parent"
+        },
+        "isFolder": {
+          "type": "boolean",
+          "title": "isFolder"
+        }
+      }
+    },
     "News": {
       "type": "object",
       "title": "Items",
@@ -239,6 +261,19 @@
       "items": {
         "$ref": "#/definitions/Practice"
       }
+    },
+    "files": {
+      "type": "array",
+      "title": "Files",
+      "items": {
+        "$ref": "#/definitions/FileElement"
+      },
+      "$proxy": {
+        "proxyName": "filesystem",
+        "params": {
+          "rootDir": "/assets"
+        }
+      }  
     }
   }
 }

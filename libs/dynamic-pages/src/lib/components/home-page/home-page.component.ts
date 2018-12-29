@@ -8,7 +8,7 @@ import { DatasourceService } from '@sazalex/datasource';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  images = ['assets/slide1.jpg'];
+  images = ['assets/sz-header-a1-home.jpg'];
   news = [];
   public carouselConfig: NguCarouselConfig = {
     grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },

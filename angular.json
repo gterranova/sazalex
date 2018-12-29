@@ -440,6 +440,34 @@
           }
         }
       }
+    },
+    "file-manager": {
+      "root": "libs/file-manager",
+      "sourceRoot": "libs/file-manager/src",
+      "projectType": "library",
+      "prefix": "sazalex",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/file-manager/tsconfig.lib.json",
+              "libs/file-manager/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/file-manager/jest.config.js",
+            "tsConfig": "libs/file-manager/tsconfig.spec.json",
+            "setupFile": "libs/file-manager/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './router-toolbar.component.html'
 })
 export class RouterToolbarComponent implements OnInit {
-  @Input() showNavigationAction = true;
+  @Input() showNavigationAction = false;
   @Input() showToolbarItemsInline = true;
   toolbarItems: MenuItem[];
   activeMenuItem$: Observable<MenuItem>;
@@ -81,8 +81,9 @@ export class RouterToolbarComponent implements OnInit {
   }
 
   getStyle() {
+    // #efede9
     return {
-      'background-color': `rgba(0,0,0,${this.toolbarOpacity})`
+      'background-color': `rgba(239,237,233,${this.toolbarOpacity})`
     };
   }
 

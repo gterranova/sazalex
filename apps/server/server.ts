@@ -19,6 +19,7 @@ import { adminRoutes } from './admin';
 import { authRoutes } from './auth';
 import { createDatasource } from './datasource';
 import { apiRoutes } from './api';
+import { uploadRoutes } from './upload';
 
 const config = { secret: 'my-secret', dispatcher: null };
 
@@ -33,6 +34,7 @@ enableProdMode();
   const PORT = process.env.PORT || 4000;
   const DIST_FOLDER = join(process.cwd(), 'dist/apps/client');
   const ADMIN_FOLDER = join(process.cwd(), 'dist/apps/admin');
+  const UPLOAD_FOLDER = join(process.cwd(), 'dist/apps/client/assets');
 
   // * NOTE :: leave this as require() since this file is built Dynamically from webpack
   const {
@@ -95,6 +97,7 @@ enableProdMode();
 
   // Example Express Rest API endpoints
   // app.get('/api/**', (req, res) => { });
+  app.use('/api/files', uploadRoutes(UPLOAD_FOLDER));
   app.use('/api', apiRoutes(config));
 
   // Server static files from /browser
