@@ -1,20 +1,19 @@
 <ng-container *ngIf="data.context as person">
-  <sazalex-hero-profile-banner [data]="person"></sazalex-hero-profile-banner>
-  <div fxLayout="row" fxLayoutAlign="center" [style.maxHeight]="'inherit'">
-    <div fxFlex="80%" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutAlign="center">
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center start">
-        <div fxFlex="66%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
-          <markdown [data]="person.bio"></markdown>
-        </div>
-        <div fxFlex="33%" class="header" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
-          <mat-nav-list>
-            <h4 matSubheader [innerHtml]="'PRACTICE AREAS'"></h4>
-            <a mat-list-item *ngFor="let practice of practiceAreas | async" [routerLink]="[ '/practice-areas', practice._id ]">
-          {{ practice.name }} </a>
-          </mat-nav-list>
-        </div>
+  <sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-curriculum.jpg">
+    <div fxLayout="row" fxLayoutAlign="start" [style.maxHeight]="'inherit'" fxLayoutGap="20px">
+      <div fxFlex="200px">
+        <img style="width: 200px; heigth: 200px" class="img-circle" [src]="person.image">
+      </div>
+      <div fxFlex="100%">
+        <h3 style="color: #fff; margin:0">{{person.name}} {{person.surname}}</h3>
+        <p style="color: #fff; margin:0">{{person.role}}</p>
+        <p *ngIf="person.practices" style="ont-style: italic"><span *ngFor="let practice of person.practices; last as isLast">{{ practice }}<span *ngIf="!isLast">,&nbsp;</span></span></p>
+        <p style="color: #fff; margin:0"><i class="fas fa-phone"></i>&nbsp;&nbsp;{{person.phone}}
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="mailto:{{person.email}}" style="text-decoration: none; color: white"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{person.email}}</a></p>
       </div>
     </div>
-  </div>
+  </sazalex-hero-banner>
 
+  <markdown [data]="person.bio"></markdown>
 </ng-container>

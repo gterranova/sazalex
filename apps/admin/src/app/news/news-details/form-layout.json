@@ -24,6 +24,32 @@
         "title": "Excerpt"
       },
       {
+        "key": "content",
+        "type": "textarea",
+        "title": "Full Text (leave blank if not necessary)"
+      },
+      {
+        "key": "attachments",
+        "add": "Add",
+        "items": [{
+          "key": "attachments[].label",
+          "type": "text",
+          "notitle": true,
+          "placeholder": "Label"
+
+        },{
+          "key": "attachments[].path",
+          "type": "text",
+          "notitle": true,
+          "placeholder": "File path"
+        }]
+      },
+      {
+        "key": "featured",
+        "type": "boolean",
+        "title": "Show on Homepage"
+      },      
+      {
         "key": "slug",
         "type": "text",
         "title": "Slug"

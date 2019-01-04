@@ -1,11 +1,21 @@
-<footer class="footer" style="padding: 20px 10%; text-align: center">
+<footer class="footer">
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-    <p> <a [routerLink]="['/about']">Chi siamo</a> </p>
-    <p> <a [routerLink]="['/people']">Professionisti</a> </p>
-    <p> <a [routerLink]="['/practices']">Rami d'attività</a> </p>
-    <p> <a [routerLink]="['/news']">Eventi e pubblicazioni</a> </p>
-    <p> <a [routerLink]="['/careers']">Lavora con noi</a> </p>
+      <div fxFlex="23%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
+      
+        </div>
+        <div fxFlex="54%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
+      <p> <a [routerLink]="['/people']">Professionisti</a> </p>
+      <p> <a [routerLink]="['/news']">Eventi e pubblicazioni</a> </p>
+      <p> <a [routerLink]="['/contacts']">Contatti</a> </p>
+      <!--<p> <a [routerLink]="['/careers']">Lavora con noi</a> </p>-->
+    </div>
+    <div class="footer-followus" fxFlex="23%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
+        <p>Seguici su</p>
+        <p><a href="#"><i class="fab fa-twitter-square"></i></a></p>
+        <p><a href="#"><i class="fab fa-linkedin"></i></a></p>
+      </div>
   </div>
+
   <div class="footer-version">
     <p>© 2018 Sani Zangrando | P.IVA 10414030964</p>
     <p>Via Visconti di Modrone 15, Milano | +39 02 3456 789 | <a href="mailto:info@sazalex.com">info@sazalex.com</a></p>

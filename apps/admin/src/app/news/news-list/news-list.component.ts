@@ -14,6 +14,8 @@ export class NewsListComponent implements OnInit {
   columnsDef = [
     { name: 'date', label: 'Date' },
     { name: 'title', label: 'Title' },
+    { name: 'slug', label: 'Slug' },
+    { name: 'featured', label: 'On Homepage?' },
     { name: 'category', label: 'Category' }];
   items: Observable<News>;
   showFilter = true;

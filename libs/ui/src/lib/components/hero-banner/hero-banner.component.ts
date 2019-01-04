@@ -29,7 +29,7 @@ export class HeroBannerComponent implements OnInit {
     switch (this.type) {
       case BannerType.IMAGE:
         return {
-          'background-image': `url(assets/${this.bgImage})`,
+          'background-image': `url(${this.bgImage})`,
           'background-repeat': 'no-repeat',
           'background-size': 'cover',
           'background-position': 'center'

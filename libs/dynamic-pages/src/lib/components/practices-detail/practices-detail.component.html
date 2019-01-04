@@ -1,14 +1,6 @@
-<sazalex-hero-banner type="image" heading="You need a proactive, not reactive, approach. We get it." subHeading="We cultivate your legal independence with easy-to-use templates and training sessions for your teams, helping
-you spot issues before they become disputes." bgImage="expertise_landing.jpg"></sazalex-hero-banner>
-<br>
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center start" [style.maxHeight]="'inherit'">
-  <div fxFlex="16%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
-    <!--
-      <sazalex-practice-list-menu></sazalex-practice-list-menu>
-    -->
-  </div>
-  <div *ngIf="data.context as practice" fxFlex="64%" fxLayout="column wrap" fxLayoutAlign="start start" fxLayoutGap="2%">
-    <h1 [innerHtml]="practice.name"></h1>
-    <markdown [data]="practice.content"></markdown>
-  </div>
-</div>
+<ng-container *ngIf="data.context as practice">
+    <sazalex-hero-banner type="image" [bgImage]="practice.header || 'sz-header-a1-home.jpg'">
+      <h1 [innerHtml]="practice.name"></h1>
+</sazalex-hero-banner>
+<markdown [data]="practice.content"></markdown>
+</ng-container>

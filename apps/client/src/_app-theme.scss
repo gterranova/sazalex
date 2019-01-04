@@ -48,11 +48,10 @@
   h3 { font-size: 28px; }
   h4 { font-size: 22px; }
   h5 { font-size: 20px; }
-  h1,
-  h2 {
+  h1, h2, h3 {
     font-family: 'Noto Serif', serif;
   }
-  h3, h4, h5 {
+  h4, h5 {
     font-family: 'Source Sans Pro', sans-serif;
   }
   h1, h2, h3, h4, h5 { color: #025e68; }
@@ -92,6 +91,8 @@
           & > .tile {
             padding: 20px;
             background-color: #dddcda;
+            height: 90%;
+            border-radius: 5px;
           }
         }
       }
@@ -108,18 +109,31 @@
         color: #87867e;
       }
     }
-
+    .news-date {
+      color: #87867e; margin: 0 0 10px 0;
+      font-weight: 400;
+      font-size: 80%;
+    }  
     .news-category {
       margin-top: 0;
     }
   
     .news-title {
       font-size: 28px;
+      color: #000;
+      margin: 0;
     }
   
     .news-text {
       font-size: 20px;
     }  
+    a.news-attachment {
+        color: #025e68;
+        text-decoration: none;
+        &:hover {
+            color: #008a93;
+          }
+    }
   }
   
   .img-circle {

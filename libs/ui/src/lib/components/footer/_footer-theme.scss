@@ -5,17 +5,45 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  app-footer,
+  sazalex-footer,
   .footer {
     background: mat-color($primary, 900);
     color: mat-color($primary, 600);
 
     a {
-      color: mat-color($primary, 400);
+      text-decoration: none;
+      color: white;
       &:hover {
-        color: mat-color($primary, 300);
       }
-    }    
+    }
+    .footer {
+      padding: 12px 7.5%;
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    .footer-list {
+      display: flex;
+      flex-direction: row;
+    }
+    
+    .footer-version {
+      flex: 1;
+    }
+
+    .footer-followus {
+      i {
+        font-size: 20px;
+      }
+
+    }
+    
+    @media screen and (max-width: 884px) {
+      .footer-list {
+        flex-direction: column;
+      }
+    }
+        
   }
 
   .clearfix::after {

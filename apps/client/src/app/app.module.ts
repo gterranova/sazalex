@@ -2,18 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NxModule } from '@nrwl/nx';
-
-import { MarkdownModule } from 'ngx-markdown';
 import { UiModule } from '@sazalex/ui';
+//import { NxModule } from '@nrwl/nx';
+
 import { RouterDirectivesModule } from '@sazalex/router-directives';
 import { DatasourceModule } from '@sazalex/datasource';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { DynamicPagesModule } from '@sazalex/dynamic-pages';
-import { DynamicPageComponent } from 'libs/dynamic-pages/src/lib/dynamic-page.component';
-import { PathResolveService, TypeResolveService, PageResolveService } from './app.service';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,16 +18,16 @@ import { PathResolveService, TypeResolveService, PageResolveService } from './ap
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
-    NxModule.forRoot(),
-    MarkdownModule.forRoot(),
-    UiModule.forRoot(),
     DatasourceModule.forRoot(),
+    UiModule.forRoot(),
     RouterDirectivesModule.forRoot(),
-    DynamicPagesModule
+    MarkdownModule.forRoot(),
+    AppRoutingModule,
+    /*
+    NxModule.forRoot(),
+    */
   ],
-  providers: [TypeResolveService, PageResolveService, PathResolveService],
-  entryComponents: [DynamicPageComponent],
   bootstrap: [AppComponent],
+  exports: [DatasourceModule]
 })
 export class AppModule {}

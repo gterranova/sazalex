@@ -5,6 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { RouteChangeService, MenuItem } from '../route-change.service';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,
@@ -21,13 +22,16 @@ export class RouterToolbarComponent implements OnInit {
   scrollingSubscription: any = null;
   drawerItems: MenuItem[];
 
+  scrollPosTop = 0;
+  
   constructor(
     private location: Location,
     private router: Router,
     private menuService: RouteChangeService,
     private scrollDispatcher: ScrollDispatcher,
     private ngZone: NgZone,
-    private el: ElementRef
+    private el: ElementRef,
+    private sanitization:DomSanitizer
   ) {
     this.activeMenuItem$ = menuService.activeMenuItem.pipe(
       tap((active: MenuItem) => {
@@ -53,6 +57,7 @@ export class RouterToolbarComponent implements OnInit {
       .forEach(element => {
         element.scrollTo({ top: 0, left: 0 });
         this.toolbarOpacity = active.opacityTopScrollPosition === 0 ? 1 : this.initialToolbarOpacity;
+        this.scrollPosTop = 0;
       });
     if (this.scrollingSubscription) {
       this.scrollingSubscription.unsubscribe();
@@ -68,6 +73,7 @@ export class RouterToolbarComponent implements OnInit {
       )
       .subscribe(scrollTop =>
         this.ngZone.run(() => {
+          this.scrollPosTop = scrollTop;
           if (active.opacityTopScrollPosition > 0) {
             this.toolbarOpacity = Math.min(
               1,
@@ -80,11 +86,13 @@ export class RouterToolbarComponent implements OnInit {
       );
   }
 
-  getStyle() {
+  getBackgroundColor() {
     // #efede9
-    return {
-      'background-color': `rgba(239,237,233,${this.toolbarOpacity})`
-    };
+    return this.sanitization.bypassSecurityTrustStyle(`rgba(239,237,233,${this.toolbarOpacity})`);
+  }
+
+  getBoxShadow() {
+    return this.sanitization.bypassSecurityTrustStyle(`0 1px 3px rgba(0,0,0,${this.scrollPosTop > 0?'.25':'0'})`);
   }
 
   onToolbarButtonTap(toolbarItem: MenuItem, event): void {

@@ -9,6 +9,11 @@
         "title": "Name"
       },
       {
+        "key": "header",
+        "type": "text",
+        "title": "Header Image"
+      },
+      {
         "key": "content",
         "type": "textarea",
         "title": "Description"

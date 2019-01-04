@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject, Optional } from '@angular/core';
 import { MockData } from './mock-datasource';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseApi, News, Person, Practice } from './base-api';
 import { Observable, of } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ export class DatasourceService extends BaseApi {
   private baseUrl = '';
   private prefix = '/api';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object, 
+  @Optional() @Inject('serverUrl') protected serverUrl: string) {
     super();
+    this.baseUrl = isPlatformBrowser(this.platformId)? this.baseUrl : this.serverUrl;
   }
   /*
   public getAllNews(params?: any): Observable<News[]> {

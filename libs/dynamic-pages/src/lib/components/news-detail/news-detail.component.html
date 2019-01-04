@@ -1,17 +1,14 @@
-<sazalex-hero-banner type="image" heading="News & Insights" bgImage="news_landing.jpg">
-  <p>We work as a team and don’t overload ourselves, so you’ll always have coverage. We know business moves
-      quickly — and we won’t leave you hanging.</p>
-</sazalex-hero-banner>
-<br>
-<div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center" [style.maxHeight]="'inherit'">
-  <div fxFlex="80%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
-    <div *ngIf="data.context as news" class="news">
-      <div class="no-shadow">
-        <h5>{{news.category | uppercase }}</h5>
-        <h2 class="title">{{news.title}}</h2>
-        <p>{{news.excerpt}}</p>
-      </div>
-      <br>
-    </div>
+<ng-container *ngIf="data.context as news" class="news">
+  <sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-news.jpg">
+    <h1>{{news.title}}</h1>
+  </sazalex-hero-banner>
+  <br>
+  <div class="no-shadow">
+    <markdown [data]="news.content || news.excerpt"></markdown>
   </div>
-</div>
+  <div>
+    <a class="attachment" *ngFor="let attachment of news.attachments" href="{{attachment.path}}"><i class="fas fa-arrow-alt-circle-down"></i>&nbsp;{{
+      attachment.label }}</a><br>
+  </div>
+  <br>
+</ng-container>

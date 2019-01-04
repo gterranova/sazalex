@@ -137,6 +137,27 @@
           "title": "Excerpt",
           "default": ""
         },
+        "content": {
+          "type": "string",
+          "title": "Full text",
+          "default": ""
+        },
+        "attachments": {
+          "type": "array",
+          "title": "Attachments",
+          "items": {    
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "path": { "type": "string" }
+            }
+          }
+        },
+        "featured": {
+          "type": "boolean",
+          "title": "Show on homepage",
+          "default": false
+        },
         "slug": {
           "type": "string",
           "title": "Slug",
@@ -209,6 +230,11 @@
         "name": {
           "type": "string",
           "title": "Name",
+          "default": ""
+        },
+        "header": {
+          "type": "string",
+          "title": "Header Image",
           "default": ""
         },
         "slug": {

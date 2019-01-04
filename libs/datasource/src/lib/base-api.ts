@@ -31,7 +31,10 @@ export interface News {
     date: string;
     title: string;
     excerpt: string;
+    content: string;
+    attachments: any[];
     slug: string;
+    featured: boolean;
     _id?: string;
 }
 

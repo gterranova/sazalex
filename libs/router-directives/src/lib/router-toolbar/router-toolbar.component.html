@@ -1,6 +1,6 @@
 <ng-container *ngIf="(activeMenuItem$ | async) as active">
     <mat-toolbar *ngIf="!active.actionBarHidden" fxLayout="row" color="primary" 
-        [ngStyle]="getStyle()">
+        [style.backgroundColor]="getBackgroundColor()" [style.boxShadow]="getBoxShadow()">
         <span>
             <ng-container *ngIf="showNavigationAction">
                 <button #navButton *ngIf="active.navigationAction" mat-icon-button (click)="onNavButtonTap(active, $event)">

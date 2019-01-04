@@ -73,7 +73,10 @@ enableProdMode();
       url: options.req.url,
       // configure DI to make lazy-loading work differently
       // (we need to instantly render the view)
-      extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
+      extraProviders: [
+        provideModuleMap(LAZY_MODULE_MAP),
+        { provide: 'serverUrl', useValue: `http://localhost:${PORT}` }
+      ]
     })
       .then(html => {
         callback(null, html);

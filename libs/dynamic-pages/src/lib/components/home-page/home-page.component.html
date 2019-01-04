@@ -19,70 +19,79 @@
 </ngu-carousel>
 
 <div class="practice-container">
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
-      <div fxFlex="67%" [style.maxHeight]="'inherit'">
-        <h2>Chi Siamo</h2>
-        <p>
-          Sani Zangrando nasce dal desiderio dei fondatori <b>Emilio Sani</b> e <b>Stefano Zangrando</b> di dar vita
-          ad uno studio legale indipendente rivolto specificamente al mondo dell'industria e dell'energia.
-        </p>
-        <p>
-          Una lunghissima esperienza di lavoro in studi primari ed una importante notorietà nei settori di cui sopra
-          consentono a Sani Zangrando di dare un servizio a vocazione internazionale e innovativo.
-        </p>
-        <p>
-          Conosciamo a fondo le normative di riferimento nei settori industriali e dell'energia in cui operiamo
-          e siamo in grado perciò di dare assistenza mirata.
-        </p>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
+    <div fxFlex="67%" [style.maxHeight]="'inherit'">
+      <h2>Chi Siamo</h2>
+      <p>
+        Sani Zangrando nasce dal desiderio dei fondatori <b>Emilio Sani</b> e <b>Stefano Zangrando</b> di dar vita
+        ad uno studio legale indipendente rivolto specificamente al mondo dell'industria e dell'energia.
+      </p>
+      <p>
+        Una lunghissima esperienza di lavoro in studi primari ed una importante notorietà nei settori di cui sopra
+        consentono a Sani Zangrando di dare un servizio a vocazione internazionale e innovativo.
+      </p>
+      <p>
+        Conosciamo a fondo le normative di riferimento nei settori industriali e dell'energia in cui operiamo
+        e siamo in grado perciò di dare assistenza mirata.
+      </p>
+    </div>
+    <div fxFlex="33%" [style.maxHeight]="'inherit'">
+      <h2>Aree di attività</h2>
+      <div class="practice-item">
+        <a [routerLink]="['/practices','diritto-energia-servizi-pubblici']">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+            <img src="assets/sz-icon-energia.png" style="padding-bottom: 15px; width: 65px; height: 65px;"><span>Diritto
+              dell'energia e dei servizi pubblici</span>
+          </div>
+        </a>
       </div>
-      <div fxFlex="33%" [style.maxHeight]="'inherit'">
-        <h2>Aree di attività</h2>
-        <div class="practice-item">
-          <a [routerLink]="['/practices']">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
-                <i class="fas fa-plug fa-2x"></i><span>Diritto dell'energia e dei servizi pubblici</span>
-            </div>
-          </a>
-        </div>
-        <div class="practice-item">
-          <a [routerLink]="['/practices']">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
-              <i class="fas fa-industry fa-2x"></i><span>Assistenza legale ad imprese industriali</span>
-            </div>
-          </a>
-        </div>
-        <div class="practice-item">
-          <a [routerLink]="['/practices']">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
+      <div class="practice-item">
+        <a [routerLink]="['/practices','assistenza-legale-ad-imprese-industriali']">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+            <img src="assets/sz-icon-industria.png" style="padding-bottom: 15px; width: 65px; height: 65px;"><span>Assistenza
+              legale ad imprese industriali</span>
+          </div>
+        </a>
+      </div>
+      <!-- div class="practice-item">
+          <a [routerLink]="['/practices','contenzioso-civile-amministrativo-tributario']">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
               <i class="fas fa-sitemap fa-2x"></i><span>Diritto commerciale e societario</span>
             </div>
           </a>
-        </div>
-        <div class="practice-item">
-          <a [routerLink]="['/practices']">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" [style.maxHeight]="'inherit'">
-              <i class="fas fa-balance-scale fa-2x"></i><span>Contenzioso civile ed amministrativo</span>
-            </div>
-          </a>
-        </div>
+        </div -->
+      <div class="practice-item">
+        <a [routerLink]="['/practices','contenzioso-civile-amministrativo-tributario']">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+            <img src="assets/sz-icon-civile.png" style="padding-bottom: 15px; width: 65px; height: 65px;"><span>Contenzioso
+              civile, amministrativo e tributario</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-  
-<h2>Ultime news</h2>
-<div class="news-container" *ngIf="news.length>0">
-  <ngu-carousel #myNews [inputs]="newsConfig" [dataSource]="news">
-    <ngu-tile class="no-shadow" *nguCarouselDef="let item">
-      <a [routerLink]="['/news', item._id]">
-        <h5 class="news-category" >{{item.category | uppercase }}</h5>
-        <h1 class="news-title" style="color: #000">{{item.title}}</h1>
-        <p class="news-text">{{item.excerpt}}</p>
-      </a>
-    </ngu-tile>
-    <i NguCarouselPrev class="fas fa-chevron-left carousel-arrow left" [style.opacity]="myNews.isFirst ? 0.5:1"></i>
-    <i NguCarouselNext class="fas fa-chevron-right carousel-arrow right" [style.opacity]="myNews.isLast ? 0.5:1"></i>
-    <ul class="ngucarouselPoint" NguCarouselPoint>
-      <li *ngFor="let n of myNews.pointNumbers; let j = index" [class.active]="j==myNews.activePoint" (click)="myNews.moveTo(j)"></li>
-    </ul>
-  </ngu-carousel>
 </div>
+<ng-container *ngIf="news.length>0">
+  <h2>Ultime news</h2>
+  <div class="news-container">
+    <ngu-carousel #myNews [inputs]="newsConfig" [dataSource]="news">
+      <ngu-tile class="no-shadow" *nguCarouselDef="let item">
+        <a [routerLink]="newsLink(item)">
+          <h5 class="news-category">{{item.category | uppercase }}<span class="news-date" *ngIf="item.category && item.date">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span
+              class="news-date" *ngIf="item.date"><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{item.date | date}}</span></h5>
+          <h1 class="news-title">{{item.title}}</h1>
+          <p class="news-text">{{item.excerpt}} <span *ngIf="item.content">...</span></p>
+        </a>
+        <div>
+          <a class="news-attachment" *ngFor="let attachment of item.attachments" href="{{attachment.path}}"><i class="fas fa-arrow-alt-circle-down"></i>&nbsp;{{
+            attachment.label }}</a><br>
+        </div>
+      </ngu-tile>
+      <i NguCarouselPrev class="fas fa-chevron-left carousel-arrow left" [style.opacity]="myNews.isFirst ? 0.5:1"></i>
+      <i NguCarouselNext class="fas fa-chevron-right carousel-arrow right" [style.opacity]="myNews.isLast ? 0.5:1"></i>
+      <ul class="ngucarouselPoint" NguCarouselPoint>
+        <li *ngFor="let n of myNews.pointNumbers; let j = index" [class.active]="j==myNews.activePoint" (click)="myNews.moveTo(j)"></li>
+      </ul>
+    </ngu-carousel>
+  </div>
+</ng-container>

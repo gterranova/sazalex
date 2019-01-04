@@ -38,18 +38,18 @@ export class TypeResolveService implements Resolve<any> {
     const { page, id} = route.params;
     if (page !== undefined) {
       if (id !== undefined) {
-        return `${page}-detail`;
+        return of(`${page}-detail`);
       }
-      return `${page}-page`;
+      return of(`${page}-page`);
     }
-    return 'default-page';
+    return of('default-page');
   }
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class PageResolveService implements Resolve<Page> {
+export class PageResolveService implements Resolve<any> {
   constructor(private dataSourceService: DatasourceService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

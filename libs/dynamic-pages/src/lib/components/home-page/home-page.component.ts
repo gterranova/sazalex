@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
-import { DatasourceService } from '@sazalex/datasource';
+import { DatasourceService, News } from '@sazalex/datasource';
+import { ItemsControl } from '@ngu/carousel/lib/ngu-carousel/ngu-carousel';
 
 @Component({
   selector: 'sazalex-home-page',
@@ -52,9 +53,15 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.datasource.getAllNews().subscribe(news => {
-      this.news = news.length ? news.slice(0, 6) : [];
+      this.news = news.length ? news.filter( (n: News) => n.featured) : [];
       this.cd.detectChanges();
     });
   }
 
+  newsLink(news: News) {
+    if (!news.content) {
+      return ['/news'];
+    }
+    return ['/news', news.slug? news.slug : news._id];
+  }
 }

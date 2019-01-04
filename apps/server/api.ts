@@ -20,10 +20,15 @@ export const apiRoutes = config => {
     } else {
       fn = dispatcher.dispatch(action, uri, undefined, req.body);
     }
-    return fn.then(data => res.json(data)).catch(reason => {
-      res.statusCode = 400;
-      res.send(reason);
-    });
+    try {
+      return fn.then(data => res.json(data)).catch(reason => {
+        res.statusCode = 400;
+        res.send(reason);
+      });  
+    } catch {
+      res.statusCode = 500;
+      res.send({ error: "Server error"});
+    }
   });
   return apiRouter;
 };

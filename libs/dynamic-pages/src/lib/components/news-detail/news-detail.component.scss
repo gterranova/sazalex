@@ -1,0 +1,10 @@
+a {
+    color: #025e68;
+    text-decoration: none;
+    &:hover {
+        color: #008a93;
+      }
+    &.readmore {
+        float: right;
+    }
+}

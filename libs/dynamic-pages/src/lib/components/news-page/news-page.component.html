@@ -1,21 +1,28 @@
-<sazalex-hero-banner type="image" heading="Clear and considered legal news and insights" 
-bgImage="news_landing.jpg">
-  <p>We have an impressive breadth and depth of technical expertise, local knowledge and global experience. This give
-      us the unique insight, understanding, business awareness and commercial aptitude that our clients value. Our
-      insights are as relevant to niche local business as they are to large multinational companies. You'll find the
-      latest news, deals and awards, as well as legal updates and insights providing in-depth commentary and expert
-      analysis.</p>
+<sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-news.jpg">
+  <h1>Eventi e pubblicazioni</h1>
 </sazalex-hero-banner>
 <br>
-<div fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center" [style.maxHeight]="'inherit'">
-  <div fxFlex="80%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2%">
-    <div *ngIf="data.context as newsList" class="news">
-      <div class="no-shadow" *ngFor="let item of newsList">
-        <h5>{{item.category | uppercase }}</h5>
-        <h2 class="title">{{item.title}}</h2>
-        <p>{{item.excerpt}} <button mat-button [routerLink]="[ '/news', item._id ]">Read more...</button></p>
+<ng-container *ngIf="data.context as newsList" class="news">
+  <ngx-masonry>
+    <ngxMasonryItem class="masonry-item" *ngFor="let item of newsList">
+      <div *ngIf="item.thumbnail" fxFlex="280px">
+        <img src="assets/{{item.thumbnail}}" width="280" height="200">
       </div>
-      <br>
-    </div>
-  </div>
-</div>
+      <div fxFlex="100%">
+        <h5 class="category">{{item.category | uppercase }}<span class="date" *ngIf="item.category && item.date">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="date"
+              *ngIf="item.date"><i class="fas fa-calendar"></i>&nbsp;&nbsp;{{item.date | date}}</span>
+        </h5>
+        <h3 class="title">{{item.title}}</h3>
+        <p>{{item.excerpt}}</p>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" fxLayoutAlign="start end" [style.maxHeight]="'inherit'">
+          <div fxFlex="100%">
+            <a *ngFor="let attachment of item.attachments" href="{{attachment.path}}"><i class="fas fa-arrow-alt-circle-down"></i>&nbsp;{{ attachment.label }}</a><br>
+          </div>
+          <div fxFlex="120px">
+            <p><a class="readmore" *ngIf="item.content" [routerLink]="[ '/news', item._id ]">Read more...</a></p>
+          </div>
+        </div>
+      </div>
+    </ngxMasonryItem>
+  </ngx-masonry>
+</ng-container>

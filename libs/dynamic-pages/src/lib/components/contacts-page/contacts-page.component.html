@@ -1,0 +1,79 @@
+<sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-contatti.jpg">
+  <h1 style="margin-bottom: 0px; color: #fff">Contatti</h1>
+</sazalex-hero-banner>
+<br>
+<div fxLayout="row" fxLayoutGap="1%" [style.maxHeight]="'inherit'">
+  <div fxFlex="50%">
+    <h5 style="margin: 0">Sani Zangrando Avvocati</h5>
+    <p>Via Visconti di Modrone, 15<br>
+      20122 Milano<br>
+      <i class="fas fa-phone"></i>&nbsp;&nbsp;+39 02 87046190<br>
+      <a href="mailto:info@sazalex.com" style="text-decoration: none; color: #000"><i class="fas fa-envelope"></i>&nbsp;&nbsp;info@sazalex.com</a><br>
+    </p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.2583677864955!2d9.197496015841564!3d45.464599041437424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6a4f4e9620f%3A0x8781e8c3f6b81e64!2sVia+Uberto+Visconti+di+Modrone%2C+15%2C+20122+Milano+MI!5e0!3m2!1sit!2sit!4v1546451436625"
+      width="80%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+  <div fxFlex="50%">
+    <p>Per contattare lo Studio o ricevere informazioni, utilizza il modulo sottostante. Risponderememo nel più breve
+      tempo possibile.</p>
+    <br>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <table>
+        <tr>
+          <td colspan="2">
+
+            <mat-form-field>
+              <input matInput required placeholder="Nome" formControlName="name">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input type="email" matInput required placeholder="Email" formControlName="email">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input type="tel" matInput placeholder="Telefono" formControlName="phone">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <mat-select placeholder="Argomento" formControlName="subject">
+                <mat-option value="informazioni">Informazioni generali</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <textarea matInput placeholder="Messaggio" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="10"
+                formControlName="message"></textarea>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="content-center">
+            <div style="transform:scale(0.7);transform-origin:0;">
+              <re-captcha required siteKey="6Lf86YYUAAAAAHQn9gQ0iIvH50vw-Fh_Sb6D1D1N" formControlName="recaptchaReactive"></re-captcha>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-checkbox color="primary" formControlName="privacy">Ho letto ed accettato l'informativa sulla <a href="#">Privacy</a></mat-checkbox>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="content-center">
+            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !contactForm.controls.privacy.value">Invia</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
