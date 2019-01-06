@@ -1,9 +1,14 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import { Injectable, Inject, Optional, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { zip, filter, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { RouterDrawerActions } from './router-drawer-content/router-drawer-actions.interface';
 import { DatasourceService, Page } from '@sazalex/datasource';
+
+import { TransferState, makeStateKey } from '@angular/platform-browser';
+import { isPlatformServer } from '@angular/common';
+
+const PAGES_INFO_KEY = makeStateKey('pages_info');
 
 export interface MenuItem {
   path: string;
@@ -39,11 +44,23 @@ export class RouteChangeService {
   closeDrawerOnRouteChange: boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private dataSourceService: DatasourceService /*, private titleService: Title*/) {
+    private dataSourceService: DatasourceService,
+    private state: TransferState,
+    @Inject(PLATFORM_ID) private platformId /*, private titleService: Title*/) {
     // router.events.subscribe((event: RouterEvent) => {
     //  this.navigationInterceptor(event)
     // })
-    this.dataSourceService.getAllPages().subscribe(pages => this.pages = pages);
+    this.pages = this.state.get(PAGES_INFO_KEY, []);
+
+    if (!this.pages.length) {
+      this.dataSourceService.getAllPages().subscribe(pages => {
+        this.pages = pages;
+        if (isPlatformServer(this.platformId)) { 
+          this.state.set(PAGES_INFO_KEY, pages);
+        }
+        this.activeMenuItem$.next(this.activeMenuItem$.getValue());
+      });  
+    }
     this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),

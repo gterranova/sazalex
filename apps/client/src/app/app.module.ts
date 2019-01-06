@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { MarkdownModule } from 'ngx-markdown';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
+    BrowserTransferStateModule,
     DatasourceModule.forRoot(),
     UiModule.forRoot(),
     RouterDirectivesModule.forRoot(),

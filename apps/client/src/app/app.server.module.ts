@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
+import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
   imports: [
     AppModule,
     ServerModule,
+    ServerTransferStateModule,
     FlexLayoutServerModule,
     NoopAnimationsModule,
     ModuleMapLoaderModule
