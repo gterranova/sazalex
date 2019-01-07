@@ -14,4 +14,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
+  footerLink(page) {
+    return ['', this.translate.currentLang, page];
+  }
 }

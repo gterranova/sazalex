@@ -1,9 +1,9 @@
 <footer class="footer">
   <div fxLayout="column" fxLayoutAlign="center" [style.maxHeight]="'inherit'">
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-      <p> <a [routerLink]="['', translate.currentLang, 'people']">{{ 'PEOPLE.TITLE' | translate }}</a> </p>
-      <p> <a [routerLink]="['', translate.currentLang, 'news']">{{ 'NEWS.TITLE' | translate }}</a> </p>
-      <p> <a [routerLink]="['', translate.currentLang, 'contacts']">{{ 'CONTACTS.TITLE' | translate }}</a> </p>
+      <p> <a [routerLink]="footerLink('people')">{{ 'PEOPLE.TITLE' | translate }}</a> </p>
+      <p> <a [routerLink]="footerLink('news')">{{ 'NEWS.TITLE' | translate }}</a> </p>
+      <p> <a [routerLink]="footerLink('contacts')">{{ 'CONTACTS.TITLE' | translate }}</a> </p>
     </div>
     <div class="footer-followus" fxLayoutAlign="center" fxLayoutGap="2%">
         <p><a href="#"><i class="fab fa-linkedin"></i></a></p>
