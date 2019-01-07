@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageComponent } from '../../page.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'sazalex-news-page',
@@ -9,7 +10,9 @@ import { PageComponent } from '../../page.component';
 export class NewsPageComponent implements PageComponent, OnInit {
   data: any;
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
   }

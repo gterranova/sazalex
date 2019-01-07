@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Injectable, Inject, Optional, PLATFORM_ID, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { DatasourceService, Page } from '@sazalex/datasource';
 
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { isPlatformServer } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 const PAGES_INFO_KEY = makeStateKey('pages_info');
 
@@ -47,27 +48,14 @@ export class RouteChangeService implements OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute,
     private dataSourceService: DatasourceService,
     private state: TransferState,
+    private translate: TranslateService,
     @Inject(PLATFORM_ID) private platformId /*, private titleService: Title*/) {
-    // router.events.subscribe((event: RouterEvent) => {
-    //  this.navigationInterceptor(event)
-    // })
-    this.pages = this.state.get(PAGES_INFO_KEY, []);
+      this.pages = this.state.get(PAGES_INFO_KEY, []);
 
-    if (!this.pages.length) {
-      this.dataSourceService.getAllPages().subscribe(pages => {
-        this.pages = pages;
-        if (isPlatformServer(this.platformId)) { 
-          this.state.set(PAGES_INFO_KEY, pages);
-        }
-        this.activeMenuItem$.next(this.activeMenuItem$.getValue());
-      });  
-    }
-    this.navigationSubscription = this.router.events
+      this.navigationSubscription = this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),
-        map(_ => {
-          return this.route.snapshot.firstChild;
-        })
+        map(_ => this.route.snapshot.firstChild)
       )
       .subscribe((route: ActivatedRouteSnapshot) => {
         let active = route.data && route.data['page-info'] ? <MenuItem>route.data['page-info'] : undefined;
@@ -75,15 +63,35 @@ export class RouteChangeService implements OnDestroy {
           active = this.activeMenuItem$.getValue();
         }
         active.url = this.route.snapshot['_routerState'].url;
+        if (/^\/(en|it)/.test(active.url)) {
+          let lang = active.url.match(/^\/(en|it)/)[1];
+          if (this.translate.currentLang !== lang) {
+            this.translate.use(lang);
+            console.log("Setting language on route change service", lang);
+          }
+        }
         active.hash = active.hash || this.hash(active);
         // console.log('Active hash:', active, active.hash);
         // if (active && active.title) {
         //   this.titleService.setTitle(active.title);
         // }
+        if (!this.pages.length) {
+          this.loadPages();
+        }
+        this.state.remove(PAGES_INFO_KEY);
         this.activeMenuItem$.next(active);
       });
   }
 
+  loadPages() {
+    this.dataSourceService.getAllPages().subscribe(pages => {
+      this.pages = pages;
+      if (isPlatformServer(this.platformId)) {
+        this.state.set(PAGES_INFO_KEY, pages);
+      }
+      this.activeMenuItem$.next(this.activeMenuItem$.getValue());
+    });
+  }
   /*
     get loading() {
         return this.loading$.asObservable();
@@ -137,7 +145,7 @@ export class RouteChangeService implements OnDestroy {
   getMenuItems(): MenuItem[] {
     return this.pages.filter(page => {
       return /-page$/.test(page.type) && page.title && page.showAsPopupActionItem;
-    }).map(page => <MenuItem>{...page, path: page.type.replace(/-page$/, '')});
+    }).map(page => <MenuItem>{ ...page, path: page.type.replace(/-page$/, '') });
     /*
     return (
       this.router.config
@@ -162,7 +170,7 @@ export class RouteChangeService implements OnDestroy {
   getDrawerItems(): MenuItem[] {
     return this.pages.filter(page => {
       return /-page$/.test(page.type) && page.title && page.showAsDrawerItem;
-    }).map(page => <MenuItem>{...page, path: page.type.replace(/-page$/, '')});
+    }).map(page => <MenuItem>{ ...page, path: page.type.replace(/-page$/, '') });
     /*
     return (
       this.router.config
@@ -181,7 +189,7 @@ export class RouteChangeService implements OnDestroy {
   }
 
   onDrawerButtonTap(drawerItem: MenuItem): boolean {
-    this.router.navigate(['/' + drawerItem.path]);
+    this.router.navigate([this.translate.currentLang, '/' + drawerItem.path]);
     if (this.drawerHolder && this.closeDrawerOnRouteChange) {
       this.drawerHolder.closeDrawer();
     }
@@ -189,7 +197,7 @@ export class RouteChangeService implements OnDestroy {
   }
 
   onToolbarButtonTap(toolbarItem: MenuItem): boolean {
-    this.router.navigate(['/' + toolbarItem.path]);
+    this.router.navigate([this.translate.currentLang, toolbarItem.path]);
     if (this.drawerHolder && this.closeDrawerOnRouteChange) {
       this.drawerHolder.closeDrawer();
     }
@@ -220,9 +228,9 @@ export class RouteChangeService implements OnDestroy {
     return cfg && cfg['page-info'] ? <MenuItem>cfg['page-info'] : undefined;
   }
   */
- ngOnDestroy(): void {
-    if (this.navigationSubscription) {  
-        this.navigationSubscription.unsubscribe();
+  ngOnDestroy(): void {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
     }
   }
 
@@ -251,5 +259,5 @@ export class RouteChangeService implements OnDestroy {
     }
     return String(a);
   }
-  
+
 }

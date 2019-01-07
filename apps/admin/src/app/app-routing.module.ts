@@ -43,7 +43,7 @@ export const AppRoutes: Routes = [
     }
   },
   {
-    path: 'pages',
+    path: 'it/pages',
     pathMatch: 'prefix',
     canActivate: [AuthGuard],
     loadChildren: './pages/pages.module#PagesModule',
@@ -61,7 +61,25 @@ export const AppRoutes: Routes = [
     }
   },
   {
-    path: 'people',
+    path: 'en/pages',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './pages/pages.module#PagesModule',
+    data: {
+      "page-info": {
+        title: 'Pages',
+        navigationAction: 'arrow_back',
+        icon: 'users',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
+    path: 'it/people',
     pathMatch: 'prefix',
     canActivate: [AuthGuard],
     loadChildren: './people/people.module#PeopleModule',
@@ -79,7 +97,25 @@ export const AppRoutes: Routes = [
     }
   },
   {
-    path: 'practices',
+    path: 'en/people',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './people/people.module#PeopleModule',
+    data: {
+      "page-info": {
+        title: 'Professionals',
+        navigationAction: 'arrow_back',
+        icon: 'users',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
+    path: 'it/practices',
     pathMatch: 'prefix',
     canActivate: [AuthGuard],
     loadChildren: './practices/practices.module#PracticesModule',
@@ -97,7 +133,43 @@ export const AppRoutes: Routes = [
     }
   },
   {
-    path: 'news',
+    path: 'en/practices',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './practices/practices.module#PracticesModule',
+    data: {
+      "page-info": {
+        title: 'Practice Areas',
+        navigationAction: 'arrow_back',
+        icon: 'info',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
+    path: 'it/news',
+    pathMatch: 'prefix',
+    canActivate: [AuthGuard],
+    loadChildren: './news/news.module#NewsModule',
+    data: {
+      "page-info": {
+        title: 'News',
+        navigationAction: 'arrow_back',
+        icon: 'info',
+        backLink: '/',
+        showAsPopupActionItem: false,
+        showAsDrawerItem: true,
+        actionBarHidden: false,
+        actionItemsHidden: false
+      }
+    }
+  },
+  {
+    path: 'en/news',
     pathMatch: 'prefix',
     canActivate: [AuthGuard],
     loadChildren: './news/news.module#NewsModule',

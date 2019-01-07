@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatasourceService } from '@sazalex/datasource';
 import { MdEditorWidgetComponent } from '@sazalex/markdown-editor';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'sazalex-item-details',
@@ -29,10 +30,13 @@ export class ItemDetailsComponent implements OnInit {
     defautWidgetOptions: { feedback: true } // Show inline feedback icons
   };
 
-  constructor(private router: Router, private datasourceService: DatasourceService) { }
+  constructor(
+    private router: Router, 
+    private datasourceService: DatasourceService,
+    private translate: TranslateService) { }
 
   ngOnInit() {
-    this.collectionUrl = this.router.url.split('/').slice(0,2).join('/');
+    this.collectionUrl = this.router.url.split('/').slice(0,3).join('/');
     const { schema, data, layout } = this.form; 
     this.id = data._id ? data._id : null;
     this.initialdata = JSON.parse(JSON.stringify(data));
@@ -71,6 +75,7 @@ export class ItemDetailsComponent implements OnInit {
     if (!data) {
       return;
     }
+    console.log('this.collectionUrl',this.collectionUrl,`${this.collectionUrl}${this.id?'/'+this.id:''}`)
     this.datasourceService.request(
       this.id?'update':'push', 
       `${this.collectionUrl}${this.id?'/'+this.id:''}`, data).toPromise()

@@ -21,8 +21,11 @@
 		"LATEST_NEWS": "Ultime news",
 		"PRACTICE_AREAS": "Aree di attività",
 		"PRACTICE_ENERGY": "Diritto dell'energia e dei servizi pubblici",
+		"PRACTICE_ENERGY_SLUG": "diritto-energia-e-servizi-pubblici",
 		"PRACTICE_INDUSTRY": "Assistenza legale ad imprese industriali",
-		"PRACTICE_LITIGATION": "Contenzioso civile, amministrativo e tributario",
+		"PRACTICE_INDUSTRY_SLUG": "assistenza-legale-ad-imprese-industriali",
+		"PRACTICE_LITIGATION": "Contenzioso civile, amministrativo e tributario ed arbitrati",
+		"PRACTICE_LITIGATION_SLUG": "contenzioso-civile-amministrativo-tributario-e-arbitrati",
 		"TITLE": "Indipendenti, innovativi e internazionali<br>per l'industria e l'energia"
 	},
 	"NEWS": {

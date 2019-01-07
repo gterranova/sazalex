@@ -260,32 +260,72 @@
         "$ref": "#/definitions/User"
       }
     },
-    "pages": {
-      "type": "array",
-      "title": "Pages",
-      "items": {
-        "$ref": "#/definitions/Page"
-      }
-    },    
-    "news": {
-      "type": "array",
-      "title": "News",
-      "items": {
-        "$ref": "#/definitions/News"
+    "it": {
+      "type": "object",
+      "title": "Lang IT",
+      "properties": {
+        "pages": {
+          "type": "array",
+          "title": "Pages",
+          "items": {
+            "$ref": "#/definitions/Page"
+          }
+        },    
+        "news": {
+          "type": "array",
+          "title": "News",
+          "items": {
+            "$ref": "#/definitions/News"
+          }
+        },
+        "people": {
+          "type": "array",
+          "title": "People",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "practices": {
+          "type": "array",
+          "title": "Practices",
+          "items": {
+            "$ref": "#/definitions/Practice"
+          }
+        }    
       }
     },
-    "people": {
-      "type": "array",
-      "title": "People",
-      "items": {
-        "$ref": "#/definitions/Person"
-      }
-    },
-    "practices": {
-      "type": "array",
-      "title": "Practices",
-      "items": {
-        "$ref": "#/definitions/Practice"
+    "en": {
+      "type": "object",
+      "title": "Lang EN",
+      "properties": {
+        "pages": {
+          "type": "array",
+          "title": "Pages",
+          "items": {
+            "$ref": "#/definitions/Page"
+          }
+        },    
+        "news": {
+          "type": "array",
+          "title": "News",
+          "items": {
+            "$ref": "#/definitions/News"
+          }
+        },
+        "people": {
+          "type": "array",
+          "title": "People",
+          "items": {
+            "$ref": "#/definitions/Person"
+          }
+        },
+        "practices": {
+          "type": "array",
+          "title": "Practices",
+          "items": {
+            "$ref": "#/definitions/Practice"
+          }
+        }    
       }
     },
     "files": {

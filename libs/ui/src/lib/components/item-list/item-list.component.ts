@@ -4,6 +4,7 @@ import { DatasourceService } from '@sazalex/datasource';
 import { Observable, Subscription } from 'rxjs';
 import { Sort, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { EventEmitter } from 'events';
+import { TranslateService } from '@ngx-translate/core';
 
 function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -53,7 +54,8 @@ export class ItemListComponent<T extends ItemWithId> implements OnInit, OnDestro
   constructor(
     protected route: ActivatedRoute,
     protected router: Router,
-    protected datasourceService: DatasourceService
+    protected datasourceService: DatasourceService,
+    private translate: TranslateService
   ) {
   }
 
@@ -155,7 +157,7 @@ export class ItemListComponent<T extends ItemWithId> implements OnInit, OnDestro
 
   async onDeleteClicked(data: any, event) {
     if (event) event.stopPropagation();
-    await this.datasourceService.request('delete', `${this.collectionUrl}/${data._id}`)
+    await this.datasourceService.request('delete', `${this.translate.currentLang}/${this.collectionUrl}/${data._id}`)
       .toPromise();
     this.data.data = this.data.data.filter(u => u._id !== data._id);
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { DatasourceService, News } from '@sazalex/datasource';
-import { ItemsControl } from '@ngu/carousel/lib/ngu-carousel/ngu-carousel';
+import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'sazalex-home-page',
@@ -48,8 +49,10 @@ export class HomePageComponent implements OnInit {
     easing: 'cubic-bezier(0, 0, 0.2, 1)'
   };
 
-  constructor(private datasource: DatasourceService,
-    private cd: ChangeDetectorRef) { }
+  constructor(
+    private datasource: DatasourceService,
+    private cd: ChangeDetectorRef,
+    private translate: TranslateService) { }
 
   ngOnInit() {
     this.datasource.getAllNews().subscribe(news => {
@@ -60,8 +63,12 @@ export class HomePageComponent implements OnInit {
 
   newsLink(news: News) {
     if (!news.content) {
-      return ['/news'];
+      return ['', this.translate.currentLang, 'news'];
     }
-    return ['/news', news.slug? news.slug : news._id];
+    return ['', this.translate.currentLang, 'news', news.slug? news.slug : news._id];
+  }
+
+  practiceLink(practiceKey: string) {
+    return this.translate.get(practiceKey).pipe( map( practiceSlug => ['', this.translate.currentLang, 'practices', practiceSlug]));
   }
 }

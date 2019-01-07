@@ -12,7 +12,7 @@
       <br>
       <a *ngIf="person.email" href="mailto:{{person.email}}" style="text-decoration: none; color: black"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{person.email}}</a></p>
     <span *ngIf="person.bio">
-      <button color="primary" mat-stroked-button [routerLink]="['/people', person.slug]">{{'PEOPLE.PROFILE'|translate}}</button>
+      <button color="primary" mat-stroked-button [routerLink]="['', translate.currentLang, 'people', person.slug]">{{'PEOPLE.PROFILE'|translate}}</button>
     </span>
   </div>
 </div>

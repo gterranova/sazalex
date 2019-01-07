@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  version = '1.0.0';
-  constructor() {}
+  constructor(private translate: TranslateService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
 }

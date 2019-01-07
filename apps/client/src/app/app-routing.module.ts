@@ -3,29 +3,47 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from '@sazalex/ui';
 import { DynamicPagesModule, DynamicPageComponent } from '@sazalex/dynamic-pages';
-import { PathResolveService, TypeResolveService, PageResolveService } from './app-routing.service';
+import { PathResolveService, TypeResolveService, PageResolveService, HomeGuard } from './app-routing.service';
 
 // app
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
+    canActivate: [HomeGuard],
+    component: DynamicPageComponent
   },
   {
-    path: ':page',
+    path: 'en/:page',
     pathMatch: 'full',
     component: DynamicPageComponent,
     resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     data: {}
   },
   {
-    path: ':page/:id',
+    path: 'en/:page/:id',
     pathMatch: 'full',
     component: DynamicPageComponent,
     resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    data: {}
+  },
+  {
+    path: 'it',
+    pathMatch: 'full',
+    redirectTo: '/it/home'
+  },
+  {
+    path: 'it/:page',
+    pathMatch: 'full',
+    component: DynamicPageComponent,
+    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    data: {}
+  },
+  {
+    path: 'it/:page/:id',
+    pathMatch: 'full',
+    component: DynamicPageComponent,
+    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
     data: {}
   },
   {
@@ -54,7 +72,7 @@ export const routes: Routes = [
       onSameUrlNavigation: 'reload'
     })
   ],
-  providers: [TypeResolveService, PageResolveService, PathResolveService],
+  providers: [TypeResolveService, PageResolveService, PathResolveService, HomeGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

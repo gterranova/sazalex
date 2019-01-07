@@ -4,6 +4,7 @@ import {
   RouteChangeService,
   RouterDrawerActions
 } from '@sazalex/router-directives';
+import { TranslateService } from '@ngx-translate/core';
 
 declare const require: any;
 
@@ -16,7 +17,11 @@ export class AppComponent implements OnInit, RouterDrawerActions {
   @ViewChild('sidedrawerId')
   public drawer: MatSidenav;
 
-  constructor(private menuService: RouteChangeService) {}
+  constructor(private menuService: RouteChangeService, translate: TranslateService) {
+    translate.addLangs(["it", "en"]);
+    translate.setDefaultLang('it');
+    translate.use('it');
+  }
 
   ngOnInit() {
     this.menuService.setDrawerHolder(this, false);

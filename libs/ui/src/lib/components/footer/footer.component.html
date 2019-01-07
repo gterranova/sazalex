@@ -1,19 +1,14 @@
 <footer class="footer">
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-      <div fxFlex="23%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-      
-        </div>
-        <div fxFlex="54%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-      <p> <a [routerLink]="['/people']">{{ 'PEOPLE.TITLE' | translate }}</a> </p>
-      <p> <a [routerLink]="['/news']">{{ 'NEWS.TITLE' | translate }}</a> </p>
-      <p> <a [routerLink]="['/contacts']">{{ 'CONTACTS.TITLE' | translate }}</a> </p>
-      <!--<p> <a [routerLink]="['/careers']">Lavora con noi</a> </p>-->
+  <div fxLayout="column" fxLayoutAlign="center" [style.maxHeight]="'inherit'">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
+      <p> <a [routerLink]="['', translate.currentLang, 'people']">{{ 'PEOPLE.TITLE' | translate }}</a> </p>
+      <p> <a [routerLink]="['', translate.currentLang, 'news']">{{ 'NEWS.TITLE' | translate }}</a> </p>
+      <p> <a [routerLink]="['', translate.currentLang, 'contacts']">{{ 'CONTACTS.TITLE' | translate }}</a> </p>
     </div>
-    <div class="footer-followus" fxFlex="23%" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="2%" [style.maxHeight]="'inherit'">
-        <p>{{ 'FOOTER.FOLLOW_US' | translate}}</p>
-        <p><a href="#"><i class="fab fa-twitter-square"></i></a></p>
+    <div class="footer-followus" fxLayoutAlign="center" fxLayoutGap="2%">
         <p><a href="#"><i class="fab fa-linkedin"></i></a></p>
-      </div>
+        <p><a href="#"><i class="fab fa-twitter-square"></i></a></p>
+    </div>
   </div>
 
   <div class="footer-version">

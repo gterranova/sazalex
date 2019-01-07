@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeroBannerComponent } from './components/hero-banner/hero-banner.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { MarkdownModule } from 'ngx-markdown';
 import { MarkdownEditorModule } from '@sazalex/markdown-editor';
 import { MaterialDesignFrameworkModule } from 'angular7-json-schema-form';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -21,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MarkdownEditorModule,
     DatasourceModule,
     TranslateModule,
+    MarkdownModule.forChild()
   ],
   declarations: [
     SafePipe,
@@ -38,6 +40,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ItemListComponent,
     ItemDetailsComponent,
     PageNotFoundComponent,
+    MarkdownModule,
   ]
 })
 export class UiModule {

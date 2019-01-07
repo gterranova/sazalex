@@ -22,8 +22,8 @@ export class AppComponent implements OnInit, RouterDrawerActions {
     translate.addLangs(["it", "en"]);
     translate.setDefaultLang('it');
 
-    let browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/it|en/) ? browserLang : 'it');
+    //let browserLang = translate.getBrowserLang();
+    //translate.use(browserLang && browserLang.match(/it|en/) ? browserLang : 'it');
 
   }
 

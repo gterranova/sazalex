@@ -12,6 +12,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '@sazalex/ui';
 import { MaterialDesignFrameworkModule } from 'angular7-json-schema-form';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [PeopleListComponent, PeopleDetailsComponent],
@@ -21,7 +22,8 @@ import { MaterialDesignFrameworkModule } from 'angular7-json-schema-form';
     ReactiveFormsModule,
     UiModule,
     PeopleRoutingModule,
-    MaterialDesignFrameworkModule
+    MaterialDesignFrameworkModule,
+    MarkdownModule.forChild()
   ]
 })
 export class PeopleModule {

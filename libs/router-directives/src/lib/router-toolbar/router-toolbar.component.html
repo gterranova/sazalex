@@ -9,7 +9,7 @@
             </ng-container>
 
             <ng-container *ngIf="active.logo; else elseLogoTemplate">
-                <a [routerLink]="['/']"><img class="logo" [src]="active.logo"></a>                
+                <a [routerLink]="['/']"><img class="logo" [src]="active.logo"></a>
             </ng-container>
             <ng-template #elseLogoTemplate>
                 <span [innerHtml]="active.title"></span>                            

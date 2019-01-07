@@ -3,7 +3,7 @@
 </sazalex-hero-banner>
 <br>
 <ng-container *ngIf="data.context as newsList" class="news">
-  <ngx-masonry>
+  <ngx-masonry [options]="{ transitionDuration: 0 }">
     <ngxMasonryItem class="masonry-item" *ngFor="let item of newsList">
       <div *ngIf="item.thumbnail" fxFlex="280px">
         <img src="assets/{{item.thumbnail}}" width="280" height="200">
@@ -17,7 +17,7 @@
             <a *ngFor="let attachment of item.attachments" href="{{attachment.path}}"><i class="fas fa-arrow-alt-circle-down"></i>&nbsp;{{ attachment.label }}</a><br>
           </div>
           <div fxFlex="120px">
-            <p><a class="readmore" *ngIf="item.content" [routerLink]="[ '/news', item._id ]">{{'NEWS.READ_MORE' | translate}}</a></p>
+            <p><a class="readmore" *ngIf="item.content" [routerLink]="['', translate.currentLang, 'news', item._id ]">{{'NEWS.READ_MORE' | translate}}</a></p>
           </div>
         </div>
       </div>

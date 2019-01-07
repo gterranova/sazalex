@@ -26,15 +26,21 @@ export interface Page {
     _id?: string;
 }
 
+export interface Attachments {
+    label: string;
+    path: string;
+    _id?: string;
+}
+
 export interface News {
     category: string;
     date: string;
     title: string;
     excerpt: string;
     content: string;
-    attachments: any[];
-    slug: string;
+    attachments: Attachments[];
     featured: boolean;
+    slug: string;
     _id?: string;
 }
 
@@ -54,8 +60,17 @@ export interface Person {
 
 export interface Practice {
     name: string;
+    header: string;
     slug: string;
     content: string;
+    _id?: string;
+}
+
+export interface It {
+    pages: Page[];
+    news: News[];
+    people: Person[];
+    practices: Practice[];
     _id?: string;
 }
 
@@ -69,10 +84,7 @@ export interface FileElement {
 
 export interface Root {
     users: User[];
-    pages: Page[];
-    news: News[];
-    people: Person[];
-    practices: Practice[];
+    it: It;
     files: FileElement[];
     _id?: string;
 }
@@ -138,184 +150,244 @@ export abstract class BaseApi {
         return this.request('delete', `/users/${usersId}`, params);
     }
 
-    public pushPages(value: Page, params?: any): Observable<Page> {
-        return this.request('push', `/pages`, value, params);
+    public getIt(params?: any): Observable<It> {
+        return this.request('get', `/it`, params);
     }
 
-    public getAllPages(params?: any): Observable<Page[]> {
-        return this.request('get', `/pages`, params);
+    public getItSchema(params?: any): Observable<any> {
+        return this.request('get', `/it`, { ...params, schema: true});
     }
 
-    public getAllPagesSchema(params?: any): Observable<any> {
-        return this.request('get', `/pages`, { ...params, schema: true});
+    public setIt(value: It, params?: any): Observable<void> {
+        return this.request('set', `/it`, value, params);
     }
 
-    public setAllPages(value: Page[], params?: any): Observable<void> {
-        return this.request('set', `/pages`, value, params);
+    public updateIt(value: It, params?: any): Observable<It> {
+        return this.request('update', `/it`, value, params);
     }
 
-    public deleteAllPages(params?: any): Observable<void> {
-        return this.request('delete', `/pages`, params);
+    public deleteIt(params?: any): Observable<void> {
+        return this.request('delete', `/it`, params);
     }
 
-    public getPages(pagesId: string, params?: any): Observable<Page> {
-        return this.request('get', `/pages/${pagesId}`, params);
+    public pushItPages(value: Page, params?: any): Observable<Page> {
+        return this.request('push', `/it/pages`, value, params);
     }
 
-    public getPagesSchema(pagesId: string, params?: any): Observable<any> {
-        return this.request('get', `/pages/${pagesId}`, { ...params, schema: true});
+    public getAllItPages(params?: any): Observable<Page[]> {
+        return this.request('get', `/it/pages`, params);
     }
 
-    public setPages(pagesId: string, value: Page, params?: any): Observable<void> {
-        return this.request('set', `/pages/${pagesId}`, value, params);
+    public getAllItPagesSchema(params?: any): Observable<any> {
+        return this.request('get', `/it/pages`, { ...params, schema: true});
     }
 
-    public updatePages(pagesId: string, value: Page, params?: any): Observable<Page> {
-        return this.request('update', `/pages/${pagesId}`, value, params);
+    public setAllItPages(value: Page[], params?: any): Observable<void> {
+        return this.request('set', `/it/pages`, value, params);
     }
 
-    public deletePages(pagesId: string, params?: any): Observable<void> {
-        return this.request('delete', `/pages/${pagesId}`, params);
+    public deleteAllItPages(params?: any): Observable<void> {
+        return this.request('delete', `/it/pages`, params);
     }
 
-    public pushNews(value: News, params?: any): Observable<News> {
-        return this.request('push', `/news`, value, params);
+    public getItPages(pagesId: string, params?: any): Observable<Page> {
+        return this.request('get', `/it/pages/${pagesId}`, params);
     }
 
-    public getAllNews(params?: any): Observable<News[]> {
-        return this.request('get', `/news`, params);
+    public getItPagesSchema(pagesId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/pages/${pagesId}`, { ...params, schema: true});
     }
 
-    public getAllNewsSchema(params?: any): Observable<any> {
-        return this.request('get', `/news`, { ...params, schema: true});
+    public setItPages(pagesId: string, value: Page, params?: any): Observable<void> {
+        return this.request('set', `/it/pages/${pagesId}`, value, params);
     }
 
-    public setAllNews(value: News[], params?: any): Observable<void> {
-        return this.request('set', `/news`, value, params);
+    public updateItPages(pagesId: string, value: Page, params?: any): Observable<Page> {
+        return this.request('update', `/it/pages/${pagesId}`, value, params);
     }
 
-    public deleteAllNews(params?: any): Observable<void> {
-        return this.request('delete', `/news`, params);
+    public deleteItPages(pagesId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/pages/${pagesId}`, params);
     }
 
-    public getNews(newsId: string, params?: any): Observable<News> {
-        return this.request('get', `/news/${newsId}`, params);
+    public pushItNews(value: News, params?: any): Observable<News> {
+        return this.request('push', `/it/news`, value, params);
     }
 
-    public getNewsSchema(newsId: string, params?: any): Observable<any> {
-        return this.request('get', `/news/${newsId}`, { ...params, schema: true});
+    public getAllItNews(params?: any): Observable<News[]> {
+        return this.request('get', `/it/news`, params);
     }
 
-    public setNews(newsId: string, value: News, params?: any): Observable<void> {
-        return this.request('set', `/news/${newsId}`, value, params);
+    public getAllItNewsSchema(params?: any): Observable<any> {
+        return this.request('get', `/it/news`, { ...params, schema: true});
     }
 
-    public updateNews(newsId: string, value: News, params?: any): Observable<News> {
-        return this.request('update', `/news/${newsId}`, value, params);
+    public setAllItNews(value: News[], params?: any): Observable<void> {
+        return this.request('set', `/it/news`, value, params);
     }
 
-    public deleteNews(newsId: string, params?: any): Observable<void> {
-        return this.request('delete', `/news/${newsId}`, params);
+    public deleteAllItNews(params?: any): Observable<void> {
+        return this.request('delete', `/it/news`, params);
     }
 
-    public pushPeople(value: Person, params?: any): Observable<Person> {
-        return this.request('push', `/people`, value, params);
+    public getItNews(newsId: string, params?: any): Observable<News> {
+        return this.request('get', `/it/news/${newsId}`, params);
     }
 
-    public getAllPeople(params?: any): Observable<Person[]> {
-        return this.request('get', `/people`, params);
+    public getItNewsSchema(newsId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/news/${newsId}`, { ...params, schema: true});
     }
 
-    public getAllPeopleSchema(params?: any): Observable<any> {
-        return this.request('get', `/people`, { ...params, schema: true});
+    public setItNews(newsId: string, value: News, params?: any): Observable<void> {
+        return this.request('set', `/it/news/${newsId}`, value, params);
     }
 
-    public setAllPeople(value: Person[], params?: any): Observable<void> {
-        return this.request('set', `/people`, value, params);
+    public updateItNews(newsId: string, value: News, params?: any): Observable<News> {
+        return this.request('update', `/it/news/${newsId}`, value, params);
     }
 
-    public deleteAllPeople(params?: any): Observable<void> {
-        return this.request('delete', `/people`, params);
+    public deleteItNews(newsId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/news/${newsId}`, params);
     }
 
-    public getPeople(peopleId: string, params?: any): Observable<Person> {
-        return this.request('get', `/people/${peopleId}`, params);
+    public pushItNewsAttachments(newsId: string, value: Attachments, params?: any): Observable<Attachments> {
+        return this.request('push', `/it/news/${newsId}/attachments`, value, params);
     }
 
-    public getPeopleSchema(peopleId: string, params?: any): Observable<any> {
-        return this.request('get', `/people/${peopleId}`, { ...params, schema: true});
+    public getAllItNewsAttachments(newsId: string, params?: any): Observable<Attachments[]> {
+        return this.request('get', `/it/news/${newsId}/attachments`, params);
     }
 
-    public setPeople(peopleId: string, value: Person, params?: any): Observable<void> {
-        return this.request('set', `/people/${peopleId}`, value, params);
+    public getAllItNewsAttachmentsSchema(newsId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/news/${newsId}/attachments`, { ...params, schema: true});
     }
 
-    public updatePeople(peopleId: string, value: Person, params?: any): Observable<Person> {
-        return this.request('update', `/people/${peopleId}`, value, params);
+    public setAllItNewsAttachments(newsId: string, value: Attachments[], params?: any): Observable<void> {
+        return this.request('set', `/it/news/${newsId}/attachments`, value, params);
     }
 
-    public deletePeople(peopleId: string, params?: any): Observable<void> {
-        return this.request('delete', `/people/${peopleId}`, params);
+    public deleteAllItNewsAttachments(newsId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/news/${newsId}/attachments`, params);
     }
 
-    public pushPeoplePractices(peopleId: string, value: string, params?: any): Observable<string> {
-        return this.request('push', `/people/${peopleId}/practices`, value, params);
+    public getItNewsAttachments(newsId: string, attachmentsId: string, params?: any): Observable<Attachments> {
+        return this.request('get', `/it/news/${newsId}/attachments/${attachmentsId}`, params);
     }
 
-    public getAllPeoplePractices(peopleId: string, params?: any): Observable<string[]> {
-        return this.request('get', `/people/${peopleId}/practices`, params);
+    public getItNewsAttachmentsSchema(newsId: string, attachmentsId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/news/${newsId}/attachments/${attachmentsId}`, { ...params, schema: true});
     }
 
-    public getAllPeoplePracticesSchema(peopleId: string, params?: any): Observable<any> {
-        return this.request('get', `/people/${peopleId}/practices`, { ...params, schema: true});
+    public setItNewsAttachments(newsId: string, attachmentsId: string, value: Attachments, params?: any): Observable<void> {
+        return this.request('set', `/it/news/${newsId}/attachments/${attachmentsId}`, value, params);
     }
 
-    public setAllPeoplePractices(peopleId: string, value: string[], params?: any): Observable<void> {
-        return this.request('set', `/people/${peopleId}/practices`, value, params);
+    public updateItNewsAttachments(newsId: string, attachmentsId: string, value: Attachments, params?: any): Observable<Attachments> {
+        return this.request('update', `/it/news/${newsId}/attachments/${attachmentsId}`, value, params);
     }
 
-    public deleteAllPeoplePractices(peopleId: string, params?: any): Observable<void> {
-        return this.request('delete', `/people/${peopleId}/practices`, params);
+    public deleteItNewsAttachments(newsId: string, attachmentsId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/news/${newsId}/attachments/${attachmentsId}`, params);
     }
 
-    public pushPractices(value: Practice, params?: any): Observable<Practice> {
-        return this.request('push', `/practices`, value, params);
+    public pushItPeople(value: Person, params?: any): Observable<Person> {
+        return this.request('push', `/it/people`, value, params);
     }
 
-    public getAllPractices(params?: any): Observable<Practice[]> {
-        return this.request('get', `/practices`, params);
+    public getAllItPeople(params?: any): Observable<Person[]> {
+        return this.request('get', `/it/people`, params);
     }
 
-    public getAllPracticesSchema(params?: any): Observable<any> {
-        return this.request('get', `/practices`, { ...params, schema: true});
+    public getAllItPeopleSchema(params?: any): Observable<any> {
+        return this.request('get', `/it/people`, { ...params, schema: true});
     }
 
-    public setAllPractices(value: Practice[], params?: any): Observable<void> {
-        return this.request('set', `/practices`, value, params);
+    public setAllItPeople(value: Person[], params?: any): Observable<void> {
+        return this.request('set', `/it/people`, value, params);
     }
 
-    public deleteAllPractices(params?: any): Observable<void> {
-        return this.request('delete', `/practices`, params);
+    public deleteAllItPeople(params?: any): Observable<void> {
+        return this.request('delete', `/it/people`, params);
     }
 
-    public getPractices(practicesId: string, params?: any): Observable<Practice> {
-        return this.request('get', `/practices/${practicesId}`, params);
+    public getItPeople(peopleId: string, params?: any): Observable<Person> {
+        return this.request('get', `/it/people/${peopleId}`, params);
     }
 
-    public getPracticesSchema(practicesId: string, params?: any): Observable<any> {
-        return this.request('get', `/practices/${practicesId}`, { ...params, schema: true});
+    public getItPeopleSchema(peopleId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/people/${peopleId}`, { ...params, schema: true});
     }
 
-    public setPractices(practicesId: string, value: Practice, params?: any): Observable<void> {
-        return this.request('set', `/practices/${practicesId}`, value, params);
+    public setItPeople(peopleId: string, value: Person, params?: any): Observable<void> {
+        return this.request('set', `/it/people/${peopleId}`, value, params);
     }
 
-    public updatePractices(practicesId: string, value: Practice, params?: any): Observable<Practice> {
-        return this.request('update', `/practices/${practicesId}`, value, params);
+    public updateItPeople(peopleId: string, value: Person, params?: any): Observable<Person> {
+        return this.request('update', `/it/people/${peopleId}`, value, params);
     }
 
-    public deletePractices(practicesId: string, params?: any): Observable<void> {
-        return this.request('delete', `/practices/${practicesId}`, params);
+    public deleteItPeople(peopleId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/people/${peopleId}`, params);
+    }
+
+    public pushItPeoplePractices(peopleId: string, value: string, params?: any): Observable<string> {
+        return this.request('push', `/it/people/${peopleId}/practices`, value, params);
+    }
+
+    public getAllItPeoplePractices(peopleId: string, params?: any): Observable<string[]> {
+        return this.request('get', `/it/people/${peopleId}/practices`, params);
+    }
+
+    public getAllItPeoplePracticesSchema(peopleId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/people/${peopleId}/practices`, { ...params, schema: true});
+    }
+
+    public setAllItPeoplePractices(peopleId: string, value: string[], params?: any): Observable<void> {
+        return this.request('set', `/it/people/${peopleId}/practices`, value, params);
+    }
+
+    public deleteAllItPeoplePractices(peopleId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/people/${peopleId}/practices`, params);
+    }
+
+    public pushItPractices(value: Practice, params?: any): Observable<Practice> {
+        return this.request('push', `/it/practices`, value, params);
+    }
+
+    public getAllItPractices(params?: any): Observable<Practice[]> {
+        return this.request('get', `/it/practices`, params);
+    }
+
+    public getAllItPracticesSchema(params?: any): Observable<any> {
+        return this.request('get', `/it/practices`, { ...params, schema: true});
+    }
+
+    public setAllItPractices(value: Practice[], params?: any): Observable<void> {
+        return this.request('set', `/it/practices`, value, params);
+    }
+
+    public deleteAllItPractices(params?: any): Observable<void> {
+        return this.request('delete', `/it/practices`, params);
+    }
+
+    public getItPractices(practicesId: string, params?: any): Observable<Practice> {
+        return this.request('get', `/it/practices/${practicesId}`, params);
+    }
+
+    public getItPracticesSchema(practicesId: string, params?: any): Observable<any> {
+        return this.request('get', `/it/practices/${practicesId}`, { ...params, schema: true});
+    }
+
+    public setItPractices(practicesId: string, value: Practice, params?: any): Observable<void> {
+        return this.request('set', `/it/practices/${practicesId}`, value, params);
+    }
+
+    public updateItPractices(practicesId: string, value: Practice, params?: any): Observable<Practice> {
+        return this.request('update', `/it/practices/${practicesId}`, value, params);
+    }
+
+    public deleteItPractices(practicesId: string, params?: any): Observable<void> {
+        return this.request('delete', `/it/practices/${practicesId}`, params);
     }
 
     public pushFiles(value: FileElement, params?: any): Observable<FileElement> {

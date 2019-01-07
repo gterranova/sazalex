@@ -48,7 +48,6 @@ export class RouterToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Init your component properties here.
   }
 
   setupOpacity(active: MenuItem) {
@@ -114,11 +113,16 @@ export class RouterToolbarComponent implements OnInit {
 
   onLangSelect(active: MenuItem, lang: string) {
     if (lang !== this.translate.currentLang) {
-      this.translate.use(lang);
-      const urlSegments = active.url.split('?')[0].split('/').slice(1);
-      this.router.navigate(urlSegments, {
-        queryParams: lang !== this.translate.defaultLang? { lang } : undefined
-      });  
+      this.translate.use(lang).subscribe(_ => {
+        this.menuService.loadPages();
+        const urlSegments = active.url.split('?')[0].split('/').slice(1);
+        if (/en|it/.test(urlSegments[0])) {
+          urlSegments[0] = lang;
+        }
+        //console.log("Navigate to", urlSegments)
+        this.router.navigate(urlSegments);  
+  
+      });
     }
   }
 }

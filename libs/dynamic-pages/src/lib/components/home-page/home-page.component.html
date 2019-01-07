@@ -27,7 +27,7 @@
     <div fxFlex="33%" [style.maxHeight]="'inherit'">
       <h2 [innerHTML]="'HOME.PRACTICE_AREAS' | translate"></h2>
       <div class="practice-item">
-        <a [routerLink]="['/practices','diritto-energia-servizi-pubblici']">
+        <a [routerLink]="practiceLink('HOME.PRACTICE_ENERGY_SLUG')|async">
           <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img src="assets/sz-icon-energia.png" style="padding-bottom: 15px; width: 65px; height: 65px;">
             <span>{{'HOME.PRACTICE_ENERGY' | translate}}</span>
@@ -35,7 +35,7 @@
         </a>
       </div>
       <div class="practice-item">
-        <a [routerLink]="['/practices','assistenza-legale-ad-imprese-industriali']">
+        <a [routerLink]="practiceLink('HOME.PRACTICE_INDUSTRY_SLUG')|async">
           <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img src="assets/sz-icon-industria.png" style="padding-bottom: 15px; width: 65px; height: 65px;">
             <span>{{'HOME.PRACTICE_INDUSTRY' | translate}}</span>
@@ -50,7 +50,7 @@
           </a>
         </div -->
       <div class="practice-item">
-        <a [routerLink]="['/practices','contenzioso-civile-amministrativo-tributario']">
+        <a [routerLink]="practiceLink('HOME.PRACTICE_LITIGATION_SLUG')|async">
           <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img src="assets/sz-icon-civile.png" style="padding-bottom: 15px; width: 65px; height: 65px;">
             <span>{{'HOME.PRACTICE_LITIGATION' | translate}}</span>
@@ -76,8 +76,10 @@
             attachment.label }}</a><br>
         </div>
       </ngu-tile>
+      <!--
       <i NguCarouselPrev class="fas fa-chevron-left carousel-arrow left" [style.opacity]="myNews.isFirst ? 0.5:1"></i>
       <i NguCarouselNext class="fas fa-chevron-right carousel-arrow right" [style.opacity]="myNews.isLast ? 0.5:1"></i>
+      -->
       <ul class="ngucarouselPoint" NguCarouselPoint>
         <li *ngFor="let n of myNews.pointNumbers; let j = index" [class.active]="j==myNews.activePoint" (click)="myNews.moveTo(j)"></li>
       </ul>
