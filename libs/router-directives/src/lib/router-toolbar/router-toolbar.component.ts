@@ -6,6 +6,7 @@ import { RouteChangeService, MenuItem } from '../route-change.service';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   moduleId: module.id,
@@ -31,7 +32,8 @@ export class RouterToolbarComponent implements OnInit {
     private scrollDispatcher: ScrollDispatcher,
     private ngZone: NgZone,
     private el: ElementRef,
-    private sanitization:DomSanitizer
+    private sanitization:DomSanitizer,
+    private translate: TranslateService
   ) {
     this.activeMenuItem$ = menuService.activeMenuItem.pipe(
       tap((active: MenuItem) => {
@@ -107,6 +109,16 @@ export class RouterToolbarComponent implements OnInit {
       this.router.navigate([active.backLink]);
     } else {
       this.location.back();
+    }
+  }
+
+  onLangSelect(active: MenuItem, lang: string) {
+    if (lang !== this.translate.currentLang) {
+      this.translate.use(lang);
+      const urlSegments = active.url.split('?')[0].split('/').slice(1);
+      this.router.navigate(urlSegments, {
+        queryParams: lang !== this.translate.defaultLang? { lang } : undefined
+      });  
     }
   }
 }

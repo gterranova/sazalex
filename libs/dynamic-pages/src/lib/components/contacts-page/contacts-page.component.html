@@ -1,5 +1,5 @@
 <sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-contatti.jpg">
-  <h1 style="margin-bottom: 0px; color: #fff">Contatti</h1>
+  <h1 style="margin-bottom: 0px; color: #fff">{{ 'CONTACTS.TITLE' | translate }}</h1>
 </sazalex-hero-banner>
 <br>
 <div fxLayout="row" fxLayoutGap="1%" [style.maxHeight]="'inherit'">
@@ -14,36 +14,34 @@
       width="80%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
   </div>
   <div fxFlex="50%">
-    <p>Per contattare lo Studio o ricevere informazioni, utilizza il modulo sottostante. Risponderememo nel più breve
-      tempo possibile.</p>
-    <br>
+    <p>{{'CONTACTS.CALL_FOR_ACTION' | translate}}</p>
+
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <table>
         <tr>
           <td colspan="2">
-
             <mat-form-field>
-              <input matInput required placeholder="Nome" formControlName="name">
+              <input matInput required [placeholder]="'CONTACTS.NAME'|translate" formControlName="name">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
             <mat-form-field>
-              <input type="email" matInput required placeholder="Email" formControlName="email">
+              <input type="email" matInput required [placeholder]="'CONTACTS.EMAIL'|translate" formControlName="email">
             </mat-form-field>
           </td>
           <td>
             <mat-form-field>
-              <input type="tel" matInput placeholder="Telefono" formControlName="phone">
+              <input type="tel" matInput [placeholder]="'CONTACTS.PHONE'|translate" formControlName="phone">
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <mat-form-field>
-              <mat-select placeholder="Argomento" formControlName="subject">
-                <mat-option value="informazioni">Informazioni generali</mat-option>
+              <mat-select [placeholder]="'CONTACTS.SUBJECT'|translate" formControlName="subject">
+                <mat-option value="info">{{'CONTACTS.GENERAL_INFO' | translate}}</mat-option>
               </mat-select>
             </mat-form-field>
           </td>
@@ -51,7 +49,7 @@
         <tr>
           <td colspan="2">
             <mat-form-field>
-              <textarea matInput placeholder="Messaggio" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="10"
+              <textarea matInput [placeholder]="'CONTACTS.MESSAGE'|translate" matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="5"
                 formControlName="message"></textarea>
             </mat-form-field>
           </td>
@@ -65,12 +63,17 @@
         </tr>
         <tr>
           <td colspan="2">
-            <mat-checkbox color="primary" formControlName="privacy">Ho letto ed accettato l'informativa sulla <a href="#">Privacy</a></mat-checkbox>
+            <mat-checkbox color="primary" formControlName="privacy">{{ 'CONTACTS.PRIVACY_CONSENT' | translate}} <a href="#">{{'CONTACTS.PRIVACY' | translate}}</a></mat-checkbox>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>&nbsp;</p>
           </td>
         </tr>
         <tr>
           <td colspan="2" class="content-center">
-            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !contactForm.controls.privacy.value">Invia</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !contactForm.controls.privacy.value">{{'CONTACTS.SEND' | translate}}</button>
           </td>
         </tr>
       </table>

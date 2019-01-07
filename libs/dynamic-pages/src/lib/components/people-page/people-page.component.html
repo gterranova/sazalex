@@ -1,5 +1,5 @@
 <sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-team-tmp.jpg">
-    <h1>Professionisti</h1>
+    <h1>{{'PEOPLE.TITLE' | translate}}</h1>
 </sazalex-hero-banner>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
   <div fxLayout="column" *ngFor="let person of data.context; let idx = index" fxLayoutAlign="center" [style.alignItems]="'center'">
@@ -12,7 +12,7 @@
       <br>
       <a *ngIf="person.email" href="mailto:{{person.email}}" style="text-decoration: none; color: black"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{person.email}}</a></p>
     <span *ngIf="person.bio">
-      <button color="primary" mat-stroked-button [routerLink]="['/people', person.slug]">PROFILO</button>
+      <button color="primary" mat-stroked-button [routerLink]="['/people', person.slug]">{{'PEOPLE.PROFILE'|translate}}</button>
     </span>
   </div>
 </div>

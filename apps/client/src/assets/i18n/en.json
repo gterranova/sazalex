@@ -1,0 +1,36 @@
+{
+	"CONTACTS": {
+		"CALL_FOR_ACTION": "Per contattare lo Studio o ricevere informazioni, utilizza il modulo sottostante. Risponderemo nel più breve tempo possibile.",
+		"EMAIL": "Email",
+		"GENERAL_INFO": "Informazioni Generali",
+		"MESSAGE": "Messaggio",
+		"NAME": "Nome",
+		"PHONE": "Telefono",
+		"PRIVACY": "Privacy",
+		"PRIVACY_CONSENT": "Ho letto ed accettato l'informativa sulla",
+		"SEND": "Invia",
+		"SUBJECT": "Argomento",
+		"TITLE": "Contatti"
+	},
+	"FOOTER": {
+		"FOLLOW_US": "Seguici su"
+	},
+	"HOME": {
+		"ABOUT_US": "Chi Siamo",
+		"ABOUT_US_CONTENT": "<p>Sani Zangrando nasce dal desiderio dei fondatori <b>Emilio Sani</b> e <b>Stefano Zangrando</b> di dar vita ad uno studio legale indipendente rivolto specificamente al mondo dell'industria e dell'energia.</p><p>Una lunghissima esperienza di lavoro in studi primari ed una importante notorietà nei settori di cui sopra consentono a Sani Zangrando di dare un servizio a vocazione internazionale e innovativo.</p><p>Conosciamo a fondo le normative di riferimento nei settori industriali e dell'energia in cui operiamo e siamo in grado perciò di dare assistenza mirata.</p>",
+		"LATEST_NEWS": "Ultime news",
+		"PRACTICE_AREAS": "Aree di attività",
+		"PRACTICE_ENERGY": "Diritto dell'energia e dei servizi pubblici",
+		"PRACTICE_INDUSTRY": "Assistenza legale ad imprese industriali",
+		"PRACTICE_LITIGATION": "Contenzioso civile, amministrativo e tributario",
+		"TITLE": "Indipendenti, innovativi e internazionali<br>per l'industria e l'energia"
+	},
+	"NEWS": {
+		"READ_MORE": "Leggi tutto...",
+		"TITLE": "Eventi e pubblicazioni"
+	},
+	"PEOPLE": {
+		"PROFILE": "PROFILO",
+		"TITLE": "People"
+	}
+}

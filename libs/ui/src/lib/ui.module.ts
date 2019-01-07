@@ -12,6 +12,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 import { MarkdownEditorModule } from '@sazalex/markdown-editor';
 import { MaterialDesignFrameworkModule } from 'angular7-json-schema-form';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [CommonModule, 
@@ -19,6 +20,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MaterialDesignFrameworkModule,
     MarkdownEditorModule,
     DatasourceModule,
+    TranslateModule,
   ],
   declarations: [
     SafePipe,

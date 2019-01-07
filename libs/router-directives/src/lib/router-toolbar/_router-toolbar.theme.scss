@@ -35,6 +35,23 @@
     span {
       font-size: 18px;
       font-weight: 600;
+      &.lang-selector {
+        font-family: 'Source Sans Pro', sans-serif; 
+        font-size: 18px; 
+        color: $toolbarTextColor;
+        font-weight: 400;
+        margin-right: 15px;
+        & > a {
+          cursor: pointer; padding:0;
+          &:hover {
+            color: $toolbarTextColor; /* mat-color($primary, 300); */
+          }
+          &:active, &.selected {
+            font-weight: 800; 
+            color: $toolbarTextActiveColor; /* mat-color($primary, 300); */
+          }
+        }
+      }  
     }
   }
 

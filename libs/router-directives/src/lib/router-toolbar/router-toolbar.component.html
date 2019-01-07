@@ -25,6 +25,9 @@
         <ng-template #elseTemplate>
             <div style="flex-grow: 1"></div>                  
         </ng-template>
+        <span class="lang-selector">
+            <a [class.selected]="'it' === translate.currentLang" (click)="onLangSelect(active, 'it')">IT</a>&nbsp;|&nbsp;<a [class.selected]="'en' === translate.currentLang" (click)="onLangSelect(active, 'en')">EN</a>
+        </span>
         <button mat-icon-button *ngFor="let action of active.actions" (click)="onToolbarButtonTap(action)">
             <i [class]="'fa fa-'+action.icon"></i>
         </button>

@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, Optional, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -26,12 +26,13 @@ export interface MenuItem {
   menuItems?: MenuItem[];
   drawerItems?: MenuItem[];
   opacityTopScrollPosition?: number;
+  url?: any;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class RouteChangeService {
+export class RouteChangeService implements OnDestroy {
   pages: Page[] = [];
   activeMenuItem$: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>({
     path: '',
@@ -39,7 +40,7 @@ export class RouteChangeService {
     icon: ''
   });
   // loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  navigationSubscription;
   drawerHolder: RouterDrawerActions;
   closeDrawerOnRouteChange: boolean = true;
 
@@ -61,16 +62,19 @@ export class RouteChangeService {
         this.activeMenuItem$.next(this.activeMenuItem$.getValue());
       });  
     }
-    this.router.events
+    this.navigationSubscription = this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),
-        map(_ => this.route.snapshot.firstChild)
+        map(_ => {
+          return this.route.snapshot.firstChild;
+        })
       )
       .subscribe((route: ActivatedRouteSnapshot) => {
         let active = route.data && route.data['page-info'] ? <MenuItem>route.data['page-info'] : undefined;
         if (!active) {
           active = this.activeMenuItem$.getValue();
         }
+        active.url = this.route.snapshot['_routerState'].url;
         active.hash = active.hash || this.hash(active);
         // console.log('Active hash:', active, active.hash);
         // if (active && active.title) {
@@ -216,6 +220,12 @@ export class RouteChangeService {
     return cfg && cfg['page-info'] ? <MenuItem>cfg['page-info'] : undefined;
   }
   */
+ ngOnDestroy(): void {
+    if (this.navigationSubscription) {  
+        this.navigationSubscription.unsubscribe();
+    }
+  }
+
   private hash(s) {
     if (!s) {
       return '';

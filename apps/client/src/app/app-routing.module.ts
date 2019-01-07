@@ -17,6 +17,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     component: DynamicPageComponent,
     resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     data: {}
   },
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     component: DynamicPageComponent,
     resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     data: {}
   },
   {
@@ -49,6 +51,7 @@ export const routes: Routes = [
       // useHash: true,
       // scrollPositionRestoration: 'enabled',
       // preloadingStrategy: PreloadAllModules
+      onSameUrlNavigation: 'reload'
     })
   ],
   providers: [TypeResolveService, PageResolveService, PathResolveService],

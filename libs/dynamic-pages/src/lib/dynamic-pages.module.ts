@@ -19,6 +19,7 @@ import { ContactsPageComponent } from './components/contacts-page/contacts-page.
 import { NgxMasonryModule } from 'ngx-masonry';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
     NgxMasonryModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    TranslateModule,
   ],
   declarations: [
     PageDirective, 
