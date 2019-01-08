@@ -1,5 +1,4 @@
 import { Injectable, PLATFORM_ID, Inject, Optional } from '@angular/core';
-import { MockData } from './mock-datasource';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseApi, News, Person, Practice, Page } from './base-api';
 import { Observable, of } from 'rxjs';
@@ -21,30 +20,7 @@ export class DatasourceService extends BaseApi {
     super();
     this.baseUrl = isPlatformBrowser(this.platformId)? this.baseUrl : this.serverUrl;
   }
-  /*
-  public getAllNews(params?: any): Observable<News[]> {
-    return <Observable<News[]>>of(MockData['news']);
-  }
 
-  public getNews(newsId: string, params?: any): Observable<News> {
-    return <Observable<News>>of(MockData['news'].find(d => d._id === newsId));
-  }
-
-  public getAllPeople(params?: any): Observable<Person[]> {
-    return <Observable<Person[]>>of(MockData['people']);
-  }
-  public getPeople(peopleId: string, params?: any): Observable<Person> {
-    return <Observable<Person>>of(MockData['people'].find(d => d._id === peopleId));
-  }
-
-  public getAllPractices(params?: any): Observable<Practice[]> {
-    return <Observable<Practice[]>>of(MockData['practices']);
-  }
-
-  public getPractices(practicesId: string, params?: any): Observable<Practice> {
-    return <Observable<Practice>>of(MockData['practices'].find(d => d._id === practicesId));
-  }
-  */
   public getAllPages(params?: any, lang?: string): Observable<Page[]> {
     return <Observable<Page[]>>this.request('get', `/${lang || this.translate.currentLang}/pages`, params);
   }

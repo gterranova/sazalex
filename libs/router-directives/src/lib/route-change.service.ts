@@ -67,7 +67,7 @@ export class RouteChangeService implements OnDestroy {
           let lang = active.url.match(/^\/(en|it)/)[1];
           if (this.translate.currentLang !== lang) {
             this.translate.use(lang);
-            console.log("Setting language on route change service", lang);
+            //console.log("Setting language on route change service", lang);
           }
         }
         active.hash = active.hash || this.hash(active);
