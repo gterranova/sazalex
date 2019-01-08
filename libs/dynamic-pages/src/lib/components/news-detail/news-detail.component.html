@@ -1,4 +1,5 @@
 <ng-container *ngIf="data.context as news" class="news">
+  <ngx-json-ld [json]="schema"></ngx-json-ld>
   <sazalex-hero-banner type="image" bgImage="assets/sz-header-a1-news.jpg">
     <h1>{{news.title}}</h1>
   </sazalex-hero-banner>

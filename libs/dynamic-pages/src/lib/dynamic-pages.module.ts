@@ -20,6 +20,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxJsonLdModule } from 'ngx-json-ld';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RecaptchaModule,
     RecaptchaFormsModule,
     TranslateModule,
+    NgxJsonLdModule
   ],
   declarations: [
     PageDirective, 

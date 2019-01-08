@@ -10,6 +10,42 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  schema = {
+    "@context": "http://schema.org",
+    "@type": "LegalService",
+    "name": "Sani Zangrando Avvocati",
+    "url": "https://www.sazalex.com",
+    "image": "https://www.sazalex.com/assets/sz-header-a1-home.jpg",
+    "logo": "https://www.sazalex.com/assets/logo.png",
+    "address": {
+      "addressCountry": "IT",
+      "addressLocality": "Milano",
+      "addressRegion": "Lombardy",
+      "postalCode": "20122",
+      "streetAddress": "Via Visconti di Modrone, 15",
+      "telephone": "+39-02-87046190"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.4645953,
+      "longitude": 9.197496
+    },
+    "priceRange": "$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
+    ]
+  };
   images = ['assets/sz-header-a1-home.jpg'];
   news = [];
   public carouselConfig: NguCarouselConfig = {
@@ -55,8 +91,9 @@ export class HomePageComponent implements OnInit {
     private translate: TranslateService) { }
 
   ngOnInit() {
+
     this.datasource.getAllNews().subscribe(news => {
-      this.news = news.length ? news.filter( (n: News) => n.featured) : [];
+      this.news = news.length ? news.filter((n: News) => n.featured) : [];
       this.cd.detectChanges();
     });
   }
@@ -65,10 +102,10 @@ export class HomePageComponent implements OnInit {
     if (!news.content) {
       return ['', this.translate.currentLang, 'news'];
     }
-    return ['', this.translate.currentLang, 'news', news.slug? news.slug : news._id];
+    return ['', this.translate.currentLang, 'news', news.slug ? news.slug : news._id];
   }
 
   practiceLink(practiceKey: string) {
-    return this.translate.get(practiceKey).pipe( map( practiceSlug => ['', this.translate.currentLang, 'practices', practiceSlug]));
+    return this.translate.get(practiceKey).pipe(map(practiceSlug => ['', this.translate.currentLang, 'practices', practiceSlug]));
   }
 }

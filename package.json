@@ -77,6 +77,7 @@
     "morgan": "^1.9.1",
     "ng-recaptcha": "^4.2.1",
     "ngrx-store-freeze": "^0.2.4",
+    "ngx-json-ld": "^0.3.1",
     "ngx-markdown": "^7.0.0",
     "ngx-masonry": "^1.1.2",
     "nodemailer": "^5.0.0",
