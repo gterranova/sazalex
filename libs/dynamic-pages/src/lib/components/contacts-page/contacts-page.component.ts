@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'sazalex-contacts-page',
@@ -19,12 +21,17 @@ export class ContactsPageComponent implements OnInit {
     privacy: [false, Validators.required]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private translate: TranslateService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    alert(JSON.stringify(this.contactForm.value));
+    this.http.post('/contacts', this.contactForm.value).subscribe( (res: any) => {
+      this.contactForm.reset();
+      this.translate.get(`CONTACTS.${res.msg.toUpperCase()}`).subscribe( feedback => {
+        alert(feedback);
+      })
+    })
   }
 }

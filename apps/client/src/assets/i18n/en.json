@@ -10,7 +10,9 @@
 		"PRIVACY_CONSENT": "I have read and accepted the information on the",
 		"SEND": "Send",
 		"SUBJECT": "Subject",
-		"TITLE": "Contacts"
+		"TITLE": "Contacts",
+		"SUCCESS": "Thank you for contacting us! We will get in touch as soon as possible.",
+		"FAIL": "We are experiencing problems in the receiveing your data. Please try later or send an email to info@sazalex.com. Thank you!"
 	},
 	"FOOTER": {
 		"FOLLOW_US": "Follow us on"

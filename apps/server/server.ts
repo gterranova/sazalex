@@ -20,6 +20,7 @@ import { authRoutes } from './auth';
 import { createDatasource } from './datasource';
 import { apiRoutes } from './api';
 import { uploadRoutes } from './upload';
+import { contactsRoutes } from './contacts';
 
 const config = { secret: 'my-secret', dispatcher: null };
 
@@ -97,6 +98,7 @@ enableProdMode();
   // Catch all other routes and return the index file
   app.use('/admin', adminRoutes(ADMIN_FOLDER));
   app.use('/auth', authRoutes(config));
+  app.use('/contacts', contactsRoutes());
 
   // Example Express Rest API endpoints
   // app.get('/api/**', (req, res) => { });

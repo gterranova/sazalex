@@ -10,7 +10,9 @@
 		"PRIVACY_CONSENT": "Ho letto ed accettato l'informativa sulla",
 		"SEND": "Invia",
 		"SUBJECT": "Argomento",
-		"TITLE": "Contatti"
+		"TITLE": "Contatti",
+		"SUCCESS": "Grazie di averci contattato! Risponderemo nel più breve tempo possibile.",
+		"FAIL": "Si è verificato un problema nell'invio dei dati. Riprovate più tardi o scriveteci all'indirizzo info@sazalex.com. Grazie!"
 	},
 	"FOOTER": {
 		"FOLLOW_US": "Seguici su"
