@@ -76,10 +76,40 @@ mat-toolbar,
         text-align: center;
       }
 
+      .img-energia, .img-industria, .img-civile {
+        margin-bottom: 15px; 
+        width: 70px; 
+        height: 70px;
+        overflow: hidden;
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center;              /* optional, center the image */  
+      }
+      
+      .img-energia {
+        background-image: url('/assets/sz-icon-energia.png');
+      }
+      .img-industria {
+        background-image: url('/assets/sz-icon-industria.png');
+      
+      }
+      .img-civile {
+        background-image: url('/assets/sz-icon-civile.png');
+      }
+            
       &:hover, &:hover .fas {
         color: #87867e;
         p { 
           color: #000;
+        }
+        .img-energia {
+          background-image:url('/assets/sz-icon-energia-hover.png');
+        }      
+        .img-industria {
+          background-image:url('/assets/sz-icon-industria-hover.png');
+        }
+        .img-civile {
+          background-image:url('/assets/sz-icon-civile-hover.png');
         }
       }
     }
