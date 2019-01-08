@@ -50,4 +50,12 @@
       color: mat-color($accent, darker-contrast);
     }
   }
+  @media screen and (max-width:767px) {
+    sazalex-hero-banner {
+      & > div {
+        padding: 40px 20px;
+        margin: 0 -9%;
+      }
+    }
+  }
 }

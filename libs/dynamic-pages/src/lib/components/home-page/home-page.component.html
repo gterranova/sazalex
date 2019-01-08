@@ -3,7 +3,7 @@
     <div class="primary header" fxLayout="row" fxLayoutGap="0.5%" fxLayoutAlign="top" [style.background]="'url(' + item + ')'"
       [style.backgroundSize]="'cover'" [style.backgroundPosition]="'center'">
       <div fxLayout="column" fxLayoutGap="0.5%" fxLayoutAlign="left" style="text-align: left">
-        <h1 style="color: #fff; font-weight: 400; font-style: italic; padding: 80px 0 0 80px"
+        <h1 class="title-home"
           [innerHTML]="'HOME.TITLE'|translate">
         </h1>
       </div>
@@ -28,7 +28,7 @@
       <h2 [innerHTML]="'HOME.PRACTICE_AREAS' | translate"></h2>
       <div class="practice-item">
         <a [routerLink]="practiceLink('HOME.PRACTICE_ENERGY_SLUG')|async">
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+          <div fxLayout="row" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img fxFlex="70px" class="img-energia">
             <span>{{'HOME.PRACTICE_ENERGY' | translate}}</span>
           </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="practice-item">
         <a [routerLink]="practiceLink('HOME.PRACTICE_INDUSTRY_SLUG')|async">
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+          <div fxLayout="row" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img fxFlex="70px" class="img-industria">
             <span>{{'HOME.PRACTICE_INDUSTRY' | translate}}</span>
           </div>
@@ -44,14 +44,14 @@
       </div>
       <!-- div class="practice-item">
           <a [routerLink]="['/practices','contenzioso-civile-amministrativo-tributario']">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+            <div fxLayout="row" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
               <i class="fas fa-sitemap fa-2x"></i><span>Diritto commerciale e societario</span>
             </div>
           </a>
         </div -->
       <div class="practice-item">
         <a [routerLink]="practiceLink('HOME.PRACTICE_LITIGATION_SLUG')|async">
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
+          <div fxLayout="row" fxLayoutGap="20px" [style.maxHeight]="'inherit'">
             <img fxFlex="70px" class="img-civile">
             <span>{{'HOME.PRACTICE_LITIGATION' | translate}}</span>
           </div>

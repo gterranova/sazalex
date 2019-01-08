@@ -78,4 +78,28 @@
     width: 100%;
     height: 0;
   }
+  .toolbar-items-collapsed {
+    display: none!important;
+  }
+
+  @media screen and (max-width:767px) {
+    img.logo {
+      max-height: 40px;
+    }
+    mat-toolbar {
+      height: 56px!important;
+      max-height: 56px!important;
+      padding: 0 16px!important;
+    }
+    .mat-toolbar-spacer {
+      padding-top: 56px;
+    }
+    .toolbar-items-inline {
+      display: none!important;
+    }
+    .toolbar-items-collapsed {
+      display: block!important;
+      color: $toolbarTextColor;
+    }
+  }  
 }

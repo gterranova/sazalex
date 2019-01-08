@@ -16,22 +16,24 @@
             </ng-template>
         </span>
         <ng-container *ngIf="toolbarItems.length && showToolbarItemsInline; else elseTemplate">
-            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center" fxFlex="100%" style="flex-grow: 1">
+            <div class="toolbar-items-inline" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center" fxFlex="100%" style="flex-grow: 1">
                 <a [class.selected]="active.title == item.title" mat-menu-item *ngFor="let item of toolbarItems" (click)="onToolbarButtonTap(item)">
                     {{item.title}}
                 </a>            
             </div>  
         </ng-container>
         <ng-template #elseTemplate>
-            <div style="flex-grow: 1"></div>                  
+            <div style="flex-grow: 1"></div>
         </ng-template>
+        <div style="flex-grow: 1"></div>
+
         <span class="lang-selector">
             <a [class.selected]="'it' === translate.currentLang" (click)="onLangSelect(active, 'it')">IT</a>&nbsp;|&nbsp;<a [class.selected]="'en' === translate.currentLang" (click)="onLangSelect(active, 'en')">EN</a>
         </span>
         <button mat-icon-button *ngFor="let action of active.actions" (click)="onToolbarButtonTap(action)">
             <i [class]="'fa fa-'+action.icon"></i>
         </button>
-        <button *ngIf="toolbarItems.length && !showToolbarItemsInline" mat-icon-button [mat-menu-trigger-for]="menu">
+        <button class="toolbar-items-collapsed" *ngIf="toolbarItems.length" mat-icon-button [mat-menu-trigger-for]="menu">
             <mat-icon>more_vert</mat-icon>
         </button>
     </mat-toolbar>
