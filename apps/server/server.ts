@@ -21,6 +21,7 @@ import { createDatasource } from './datasource';
 import { apiRoutes } from './api';
 import { uploadRoutes } from './upload';
 import { contactsRoutes } from './contacts';
+import { generateSitemap } from './sitemap';
 
 const config = { secret: 'my-secret', dispatcher: null };
 
@@ -28,7 +29,7 @@ const config = { secret: 'my-secret', dispatcher: null };
 enableProdMode();
 
 // Express server
-(async function() {
+(async function () {
   // jshint ignore:line
   const app = express();
 
@@ -46,6 +47,8 @@ enableProdMode();
   // Load the index.html file containing referances to your application bundle.
   const template = readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
 
+  const sitemap = generateSitemap(DIST_FOLDER);
+ 
   config.dispatcher = await createDatasource(
     // jshint ignore:line
     join(DIST_FOLDER, 'assets/schema.json'),
@@ -105,6 +108,13 @@ enableProdMode();
   app.use('/api/files', uploadRoutes(UPLOAD_FOLDER));
   app.use('/api', apiRoutes(config));
 
+  app.get('/sitemap.xml', function(req, res) { // send XML map
+    res.type('application/xml');
+    sitemap.XMLtoWeb(res);
+  }).get('/robots.txt', function(req, res) { // send TXT map 
+    sitemap.TXTtoWeb(res);
+  });
+
   // Server static files from /browser
   app.get(
     '*.*',
@@ -129,4 +139,8 @@ enableProdMode();
     console.log(`Rejection:`, err);
     // dispatcher.close();
   });
+
+
+
 })();
+
