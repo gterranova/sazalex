@@ -48,16 +48,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
-    data: {
-      "page-info": {
-        title: 'Whoops... Page not found!',
-        navigationAction: 'arrow_back',
-        logo: 'assets/logo.png',
-        backLink: '/',
-        icon: 'info'  
-      }
-    }
+    redirectTo: '/en/page-not-found'
   }
 ];
 

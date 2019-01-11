@@ -5,7 +5,7 @@ export const apiRoutes = config => {
   const { dispatcher } = config;
 
   // Example Express Rest API endpoints
-  apiRouter.use((req, res) => {
+  apiRouter.use('', (req, res, next) => {
     const action = {
       GET: 'get',
       POST: 'push',
@@ -21,7 +21,14 @@ export const apiRoutes = config => {
       fn = dispatcher.dispatch(action, uri, undefined, req.body);
     }
     try {
-      return fn.then(data => res.json(data)).catch(reason => {
+      return fn.then(data => {
+        if (!data) {
+          res.statusCode = 404;
+          res.send();
+        } else {
+          res.json(data)
+        }
+      }).catch(reason => {
         res.statusCode = 400;
         res.send(reason);
       });  

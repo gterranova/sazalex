@@ -21,6 +21,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxJsonLdModule } from 'ngx-json-ld';
+import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
     PeopleDetailComponent, 
     PracticesDetailComponent, 
     HomePageComponent, 
-    ContactsPageComponent
+    ContactsPageComponent,
+    PageNotFoundPageComponent
   ],
   entryComponents: [
     DefaultPageComponent, 
@@ -58,7 +60,8 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
     PeoplePageComponent, 
     PeopleDetailComponent, 
     PracticesDetailComponent, 
-    ContactsPageComponent
+    ContactsPageComponent,
+    PageNotFoundPageComponent,
   ],
   exports: [
     DynamicPageComponent

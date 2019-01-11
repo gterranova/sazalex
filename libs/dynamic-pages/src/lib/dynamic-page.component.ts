@@ -12,6 +12,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
 import { DatasourceService } from '@sazalex/datasource';
 import { of } from 'rxjs';
+import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 
 const PageTypes = {
   'default-page': DefaultPageComponent,
@@ -22,6 +23,7 @@ const PageTypes = {
   'people-detail': PeopleDetailComponent,
   'practices-detail': PracticesDetailComponent,
   'contacts-page': ContactsPageComponent,
+  'page-not-found-page': PageNotFoundPageComponent,
 };
 
 @Component({

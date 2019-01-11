@@ -3,7 +3,7 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { DatasourceService, Page } from '@sazalex/datasource';
 import { of } from 'rxjs';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
-import { tap, map, switchMap } from 'rxjs/operators';
+import { tap, map, switchMap, catchError } from 'rxjs/operators';
 import {isPlatformServer} from "@angular/common";
 import { TranslateService } from '@ngx-translate/core';
 
@@ -29,6 +29,7 @@ export class HomeGuard implements CanActivate {
 })
 export class PathResolveService implements Resolve<any> {
   constructor(
+    private router: Router,
     private dataSourceService: DatasourceService, 
     private state: TransferState,
     private translate: TranslateService,
@@ -44,12 +45,20 @@ export class PathResolveService implements Resolve<any> {
         return of(pageData[path]);  
       }
     }
-    return this.dataSourceService.request('get', path).pipe( tap((results: any) => {
-      if (isPlatformServer(this.platformId)) {
-        //console.log("Saving state", {[path]: results });
-        this.state.set(PAGE_DATA_KEY, {[path]: results });
-      }
-    }));
+    return this.dataSourceService.request('get', path).pipe( 
+      catchError( (err, caught) => {
+        if (/*err.status === 404 && */ path.split('/').length > 3) {
+          return(this.router.navigate(['', this.translate.currentLang, 'page-not-found']));
+        }
+        return of({});
+      }),
+      tap((results: any) => {
+        if (isPlatformServer(this.platformId)) {
+          //console.log("Saving state", {[path]: results });
+          this.state.set(PAGE_DATA_KEY, {[path]: results });
+        }
+      })
+    );
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -99,6 +108,7 @@ export class TypeResolveService implements Resolve<any> {
 })
 export class PageResolveService implements Resolve<any> {
   constructor(
+    private router: Router,
     private dataSourceService: DatasourceService, 
     private state: TransferState,
     private translate: TranslateService,
@@ -131,12 +141,17 @@ export class PageResolveService implements Resolve<any> {
         return of(pageInfo[pageName]);    
       }
     }
-    return this.dataSourceService.getPages(pageName, undefined, lang).pipe( tap((results: any) => {
-      if (isPlatformServer(this.platformId)) {
-        this.state.set(PAGE_INFO_KEY, { [pageName]: results });
-        //console.log("Saving state", { [pageName]: results });
-      }
-    }));
+    return this.dataSourceService.getPages(pageName, undefined, lang).pipe( 
+      catchError( (err, caught) => {
+        return(this.router.navigate(['', lang, 'page-not-found']));
+      }),
+      tap((results: any) => {
+        if (isPlatformServer(this.platformId)) {
+          this.state.set(PAGE_INFO_KEY, { [pageName]: results });
+          //console.log("Saving state", { [pageName]: results });
+        }
+      })
+    );
   }
 }
 
