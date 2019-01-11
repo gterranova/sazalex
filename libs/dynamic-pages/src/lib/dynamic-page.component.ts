@@ -13,6 +13,7 @@ import { ContactsPageComponent } from './components/contacts-page/contacts-page.
 import { DatasourceService } from '@sazalex/datasource';
 import { of } from 'rxjs';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 const PageTypes = {
   'default-page': DefaultPageComponent,
@@ -34,12 +35,17 @@ export class DynamicPageComponent implements OnInit {
   @Input() type: string = 'default-page';
   @ViewChild(PageDirective) pageHost: PageDirective;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+  titleSep = ' | ';
+
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
     private route: ActivatedRoute,
-    private dataSourceService: DatasourceService) { }
+    private dataSourceService: DatasourceService,
+    private title: Title, private meta: Meta) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
+      this.generateTags(data);
       const dataInfoSource = data['page-info'] ? of(data['page-info']): this.dataSourceService.getPages(data.type||'default-page');
       dataInfoSource.subscribe( pageInfo => {
         const componentType = PageTypes[pageInfo.type || 'default-page'] || PageTypes['default-page'];
@@ -47,9 +53,51 @@ export class DynamicPageComponent implements OnInit {
         const viewContainerRef = this.pageHost.viewContainerRef;
         viewContainerRef.clear();
         const componentRef = viewContainerRef.createComponent(componentFactory);
-        (<PageComponent>componentRef.instance).data = data;    
+        (<PageComponent>componentRef.instance).data = data;
       });
     }) 
   }
+
+  generateTags(config) {
+    const title = this.title.getTitle().split(this.titleSep).pop();
+    if (config['page-info'].title) {
+      this.title.setTitle(`${config['page-info'].title}${this.titleSep}${title}`);
+    }
+    /*
+    // default values
+    config = {
+      title: 'Angular <3 Linkbots',
+      description: 'My SEO friendly Angular Component',
+      image: 'https://angularfirebase.com/images/logo.png',
+      slug: '',
+      ...config
+    };
+
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({ name: 'twitter:site', content: '@angularfirebase' });
+    this.meta.updateTag({ name: 'twitter:title', content: config.title });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: config.description
+    });
+    this.meta.updateTag({ name: 'twitter:image', content: config.image });
+
+    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'AngularFirebase'
+    });
+    this.meta.updateTag({ property: 'og:title', content: config.title });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: config.description
+    });
+    this.meta.updateTag({ property: 'og:image', content: config.image });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: `https://instafire-app.firebaseapp.com/${config.slug}`
+    });
+    */
+  }  
 
 }
