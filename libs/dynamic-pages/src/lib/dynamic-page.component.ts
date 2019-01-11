@@ -60,38 +60,36 @@ export class DynamicPageComponent implements OnInit {
 
   generateTags(config) {
     const title = this.title.getTitle().split(this.titleSep).pop();
+    this.meta.updateTag({ name: 'twitter:site', content: '@sazalex' });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'Sani Zangrando'
+    });
     if (config['page-info'].title) {
-      this.title.setTitle(`${config['page-info'].title}${this.titleSep}${title}`);
+      let newTitle = `${config['page-info'].title}${this.titleSep}${title}`;
+      this.title.setTitle(newTitle);
+      this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+      this.meta.updateTag({ name: 'twitter:title', content: newTitle });
+      this.meta.updateTag({ property: 'og:type', content: 'article' });
+      this.meta.updateTag({ property: 'og:title', content: newTitle });
+    }
+    if (config['page-info'].metaDescription) {
+      this.meta.updateTag({ name: 'description', content: config['page-info'].metaDescription });
+      this.meta.updateTag({
+        name: 'twitter:description',
+        content: config['page-info'].metaDescription
+      });
+      this.meta.updateTag({
+        property: 'og:description',
+        content: config['page-info'].metaDescription
+      });
+    }
+    if (config['page-info'].metaKeywords) {
+      this.meta.updateTag({ name: 'keywords', content: config['page-info'].metaKeywords });
     }
     /*
     // default values
-    config = {
-      title: 'Angular <3 Linkbots',
-      description: 'My SEO friendly Angular Component',
-      image: 'https://angularfirebase.com/images/logo.png',
-      slug: '',
-      ...config
-    };
-
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
-    this.meta.updateTag({ name: 'twitter:site', content: '@angularfirebase' });
-    this.meta.updateTag({ name: 'twitter:title', content: config.title });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: config.description
-    });
     this.meta.updateTag({ name: 'twitter:image', content: config.image });
-
-    this.meta.updateTag({ property: 'og:type', content: 'article' });
-    this.meta.updateTag({
-      property: 'og:site_name',
-      content: 'AngularFirebase'
-    });
-    this.meta.updateTag({ property: 'og:title', content: config.title });
-    this.meta.updateTag({
-      property: 'og:description',
-      content: config.description
-    });
     this.meta.updateTag({ property: 'og:image', content: config.image });
     this.meta.updateTag({
       property: 'og:url',
