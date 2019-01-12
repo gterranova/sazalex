@@ -3,7 +3,7 @@
 </sazalex-hero-banner>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
   <div fxLayout="column" *ngFor="let person of data.context; let idx = index" fxLayoutAlign="center" [style.alignItems]="'center'">
-    <img [style.marginTop]="'50px'" [style.marginBottom]="0" class="img-circle" style="min-width: 200px; max-width: 250px; height: auto; padding-left: 50px; padding-right: 50px"
+    <img [style.marginTop]="'50px'" [style.marginBottom]="0" class="img-circle" style="min-width: 200px; max-width: 250px; height: auto; margin-left: 50px; margin-right: 50px"
       [src]="person.image">
     <h4 style="font-size: 24px; margin-bottom: 0; color: #000">{{person.name}} {{person.surname}}</h4>
     <h5 style="margin: 0; color: #000; font-weight: 400">{{person.role}}</h5>

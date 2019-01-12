@@ -14,6 +14,16 @@
             "title": "Slug"
         },
         {
+            "key": "metaDescription",
+            "type": "text",
+            "title": "Meta Description"
+        },
+        {
+            "key": "metaKeywords",
+            "type": "text",
+            "title": "Meta Keywords"
+        },
+        {
             "key": "type",
             "type": "text",
             "title": "Type"
