@@ -1,6 +1,7 @@
 <ng-container *ngIf="data.context as practice">
-    <sazalex-hero-banner type="image" [bgImage]="practice.header || 'sz-header-a1-home.jpg'">
-      <h1 [innerHtml]="practice.name"></h1>
-</sazalex-hero-banner>
-<markdown [data]="practice.content"></markdown>
+  <ngx-json-ld [json]="schema"></ngx-json-ld>
+  <sazalex-hero-banner type="image" [bgImage]="practice.header || 'sz-header-a1-home.jpg'">
+    <h1 [innerHtml]="practice.name"></h1>
+  </sazalex-hero-banner>
+  <markdown [data]="practice.content"></markdown>
 </ng-container>

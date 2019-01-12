@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageComponent } from '../../page.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'sazalex-news-detail',
@@ -10,19 +11,23 @@ import { TranslateService } from '@ngx-translate/core';
 export class NewsDetailComponent implements PageComponent, OnInit {
   data: any;
   schema: any;
-  constructor(private translate: TranslateService) { }
+  titleSep = ' | ';
+
+  constructor(
+    private title: Title, private meta: Meta,
+    private translate: TranslateService) { 
+  }
 
   ngOnInit() {
     if (this.data && this.data.context) {
+      const newImage = `https://www.sazalex.com/assets/${this.data.context.image || 'sz-header-a1-news.jpg'}`;
       this.schema = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": this.data.context.title,
         "about": this.data.context.excerpt,
         "inLanguage": this.translate.currentLang,
-        "image": [
-          "https://www.sazalex.com/assets/sz-header-a1-news.jpg"
-        ],
+        "image": [newImage],
         "datePublished": this.data.context.date,
         "dateModified": this.data.context.date,
         "author": {
@@ -39,7 +44,14 @@ export class NewsDetailComponent implements PageComponent, OnInit {
           }
         }
       };      
-    }
+ 
+      const title = this.title.getTitle().split(this.titleSep).pop();
+      let newTitle = `${this.data.context.title}${this.titleSep}${title}`;
+      this.title.setTitle(newTitle);
+
+      this.meta.updateTag({ name: 'twitter:image', content: newImage });
+      this.meta.updateTag({ property: 'og:image', content: newImage });  
+   }
   }
 
 }

@@ -47,14 +47,13 @@ enableProdMode();
   // Load the index.html file containing referances to your application bundle.
   const template = readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
 
-  const sitemap = generateSitemap(DIST_FOLDER);
- 
   config.dispatcher = await createDatasource(
     // jshint ignore:line
     join(DIST_FOLDER, 'assets/schema.json'),
     join(process.cwd(), 'dist', 'data.json')
   );
-
+  const sitemap = await generateSitemap(config, DIST_FOLDER);
+ 
   app.use(
     cors({
       credentials: true

@@ -35,8 +35,19 @@ const withAltLangs = (p, langs, baseUrl, extraOptions) => {
     }));
 }
 
-export const generateSitemap = (DIST_FOLDER) => {
+const fromDatasource = (options, commonOptions, data, key, langs) => {
+    for (let lang of langs) {
+        let collection = data[lang][key]; 
+        for (let item of collection) {
+            Object.assign(options.map, ...multiMap(`/${key}/${item.slug}`, langs));
+            Object.assign(options.route, ...withAltLangs(`/${key}/${item.slug}`, langs, 'https://www.sazalex.com', commonOptions));
+        }
+    }
+}
+
+export const generateSitemap = async (config, DIST_FOLDER) => {
     const commonOptions = { lastmod: getTodayStr(), changefreq: 'daily' };
+    const { dispatcher } = config;
 
     const options = {
         http: 'https',
@@ -65,5 +76,12 @@ export const generateSitemap = (DIST_FOLDER) => {
             },
         },
     };
+
+    const data = await dispatcher.dispatch('get', ``);
+    
+    fromDatasource(options, commonOptions, data, 'people', ['it', 'en']);
+    fromDatasource(options, commonOptions, data, 'news', ['it', 'en']);
+    fromDatasource(options, commonOptions, data, 'practices', ['it', 'en']);
+
     return sitemap(options);
 }

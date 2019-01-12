@@ -60,11 +60,15 @@ export class DynamicPageComponent implements OnInit {
 
   generateTags(config) {
     const title = this.title.getTitle().split(this.titleSep).pop();
-    this.meta.updateTag({ name: 'twitter:site', content: '@sazalex' });
+    this.meta.updateTag({ name: 'twitter:site', content: '@SaniZangrando' });
     this.meta.updateTag({
       property: 'og:site_name',
       content: 'Sani Zangrando'
     });
+    // default values
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://www.sazalex.com/assets/sz-header-a1-home.jpg' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://www.sazalex.com/assets/sz-header-a1-home.jpg' });
+
     if (config['page-info'].title) {
       let newTitle = `${config['page-info'].title}${this.titleSep}${title}`;
       this.title.setTitle(newTitle);
@@ -72,7 +76,11 @@ export class DynamicPageComponent implements OnInit {
       this.meta.updateTag({ name: 'twitter:title', content: newTitle });
       this.meta.updateTag({ property: 'og:type', content: 'article' });
       this.meta.updateTag({ property: 'og:title', content: newTitle });
-    }
+      this.meta.updateTag({
+        property: 'og:url',
+        content: `https://www.sazalex.com${this.route.snapshot['_routerState'].url}`
+      });
+      }
     if (config['page-info'].metaDescription) {
       this.meta.updateTag({ name: 'description', content: config['page-info'].metaDescription });
       this.meta.updateTag({
@@ -87,15 +95,6 @@ export class DynamicPageComponent implements OnInit {
     if (config['page-info'].metaKeywords) {
       this.meta.updateTag({ name: 'keywords', content: config['page-info'].metaKeywords });
     }
-    /*
-    // default values
-    this.meta.updateTag({ name: 'twitter:image', content: config.image });
-    this.meta.updateTag({ property: 'og:image', content: config.image });
-    this.meta.updateTag({
-      property: 'og:url',
-      content: `https://instafire-app.firebaseapp.com/${config.slug}`
-    });
-    */
   }  
 
 }
