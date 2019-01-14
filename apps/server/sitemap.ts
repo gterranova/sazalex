@@ -71,9 +71,6 @@ export const generateSitemap = async (config, DIST_FOLDER) => {
             '/admin': {
                 disallow: true,
             },
-            '/api': {
-                disallow: true,
-            },
         },
     };
 
