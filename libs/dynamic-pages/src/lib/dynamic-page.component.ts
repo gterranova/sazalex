@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input, Inject, PLATFORM_ID } from '@angular/core';
 import { PageDirective } from './page.directive';
 import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { PageComponent } from './page.component';
@@ -14,6 +14,9 @@ import { DatasourceService } from '@sazalex/datasource';
 import { of } from 'rxjs';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+
+declare const window: any;
 
 const PageTypes = {
   'default-page': DefaultPageComponent,
@@ -38,6 +41,7 @@ export class DynamicPageComponent implements OnInit {
   titleSep = ' | ';
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private componentFactoryResolver: ComponentFactoryResolver,
     private route: ActivatedRoute,
     private dataSourceService: DatasourceService,
@@ -80,7 +84,13 @@ export class DynamicPageComponent implements OnInit {
         property: 'og:url',
         content: `https://www.sazalex.com${this.route.snapshot['_routerState'].url}`
       });
-      }
+      if (isPlatformBrowser(this.platformId)) {
+        (<any>window).gtag('config', 'UA-29448026-2', {
+          'page_title' : newTitle,
+          'page_path': this.route.snapshot['_routerState'].url
+        });      
+      }  
+    }
     if (config['page-info'].metaDescription) {
       this.meta.updateTag({ name: 'description', content: config['page-info'].metaDescription });
       this.meta.updateTag({
