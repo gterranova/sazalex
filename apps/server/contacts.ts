@@ -8,7 +8,7 @@ var transporter = nodemailer.createTransport({
     secure: true, // true for 465, false for other ports
     auth: {
         user: 'info@terranovanet.it',
-        pass: 'terranova$1'
+        pass: '*********'
     }
 });
 
