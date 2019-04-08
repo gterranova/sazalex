@@ -15,6 +15,18 @@ export class PeoplePageComponent implements PageComponent, OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.data && this.data.context) {
+      const field = 'position';
+      this.data.context = this.data.context.sort((a: any, b: any) => {
+        if (a[field] < b[field]) {
+          return -1;
+        } else if (a[field] > b[field]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    }
   }
 
 }
