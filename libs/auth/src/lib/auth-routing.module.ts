@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Login',
         icon: 'menu',
         actionBarHidden: true,

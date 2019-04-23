@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input, Inject, PLATFORM_ID, ComponentRef } from '@angular/core';
 import { PageDirective } from './page.directive';
 import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { PageComponent } from './page.component';
@@ -10,7 +10,7 @@ import { PeopleDetailComponent } from './components/people-detail/people-detail.
 import { PracticesDetailComponent } from './components/practices-detail/practices-detail.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
-import { DatasourceService } from '@sazalex/datasource';
+import { DatasourceService, Page } from '@sazalex/datasource';
 import { of } from 'rxjs';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -48,18 +48,22 @@ export class DynamicPageComponent implements OnInit {
     private title: Title, private meta: Meta) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe((data: PageComponent) => {
       this.generateTags(data);
-      const dataInfoSource = data['page-info'] ? of(data['page-info']): this.dataSourceService.getPages(data.type||'default-page');
+      const dataInfoSource = data.pageInfo ? of(data.pageInfo): this.dataSourceService.getPages(data.type||'default-page');
       dataInfoSource.subscribe( pageInfo => {
-        const componentType = PageTypes[pageInfo.type || 'default-page'] || PageTypes['default-page'];
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-        const viewContainerRef = this.pageHost.viewContainerRef;
-        viewContainerRef.clear();
-        const componentRef = viewContainerRef.createComponent(componentFactory);
+        const componentRef = this.setupComponent(pageInfo);
         (<PageComponent>componentRef.instance).data = data;
       });
     }) 
+  }
+
+  setupComponent(pageInfo: Page): ComponentRef<any> {
+    const componentType = PageTypes[pageInfo.type || 'default-page'] || PageTypes['default-page'];
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+    const viewContainerRef = this.pageHost.viewContainerRef;
+    viewContainerRef.clear();
+    return viewContainerRef.createComponent(componentFactory);
   }
 
   generateTags(config) {
@@ -73,8 +77,8 @@ export class DynamicPageComponent implements OnInit {
     this.meta.updateTag({ name: 'twitter:image', content: 'https://www.sazalex.com/assets/sz-header-a1-home.jpg' });
     this.meta.updateTag({ property: 'og:image', content: 'https://www.sazalex.com/assets/sz-header-a1-home.jpg' });
 
-    if (config['page-info'].title) {
-      let newTitle = `${config['page-info'].title}${this.titleSep}${title}`;
+    if (config.pageInfo.title) {
+      let newTitle = `${config.pageInfo.title}${this.titleSep}${title}`;
       this.title.setTitle(newTitle);
       this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
       this.meta.updateTag({ name: 'twitter:title', content: newTitle });
@@ -91,19 +95,19 @@ export class DynamicPageComponent implements OnInit {
         });      
       }  
     }
-    if (config['page-info'].metaDescription) {
-      this.meta.updateTag({ name: 'description', content: config['page-info'].metaDescription });
+    if (config.pageInfo.metaDescription) {
+      this.meta.updateTag({ name: 'description', content: config.pageInfo.metaDescription });
       this.meta.updateTag({
         name: 'twitter:description',
-        content: config['page-info'].metaDescription
+        content: config.pageInfo.metaDescription
       });
       this.meta.updateTag({
         property: 'og:description',
-        content: config['page-info'].metaDescription
+        content: config.pageInfo.metaDescription
       });
     }
-    if (config['page-info'].metaKeywords) {
-      this.meta.updateTag({ name: 'keywords', content: config['page-info'].metaKeywords });
+    if (config.pageInfo.metaKeywords) {
+      this.meta.updateTag({ name: 'keywords', content: config.pageInfo.metaKeywords });
     }
   }  
 

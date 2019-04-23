@@ -58,7 +58,7 @@ export class RouteChangeService implements OnDestroy {
         map(_ => this.route.snapshot.firstChild)
       )
       .subscribe((route: ActivatedRouteSnapshot) => {
-        let active = route.data && route.data['page-info'] ? <MenuItem>route.data['page-info'] : undefined;
+        let active = route.data && route.data.pageInfo ? <MenuItem>route.data.pageInfo : undefined;
         if (!active) {
           active = this.activeMenuItem$.getValue();
         }
@@ -152,16 +152,16 @@ export class RouteChangeService implements OnDestroy {
         // only add a menu item for routes with a title set.
         .filter(route => {
           const { data={}} = route;
-          const hash = this.hash(data['page-info']);
+          const hash = this.hash(data.pageInfo);
           return (
-            data['page-info'] &&
-            data['page-info'].title &&
-            !!data['page-info'].showAsPopupActionItem &&
+            data.pageInfo &&
+            data.pageInfo.title &&
+            !!data.pageInfo.showAsPopupActionItem &&
             hash !== this.activeMenuItem$.getValue().hash
           );
         })
         .map(route => {
-          return <MenuItem>Object.assign({ path: route.path }, route.data['page-info']);
+          return <MenuItem>Object.assign({ path: route.path }, route.data.pageInfo);
         })
     );
     */
@@ -178,11 +178,11 @@ export class RouteChangeService implements OnDestroy {
         .filter(
           route => {
             const { data={}} = route;
-            return data['page-info'] && data['page-info'].title && !!data['page-info'].showAsDrawerItem;
+            return data.pageInfo && data.pageInfo.title && !!data.pageInfo.showAsDrawerItem;
           }
         )
         .map(route => {
-          return <MenuItem>Object.assign({ path: route.path }, route.data['page-info']);
+          return <MenuItem>Object.assign({ path: route.path }, route.data.pageInfo);
         })
     );
     */
@@ -225,7 +225,7 @@ export class RouteChangeService implements OnDestroy {
   private extractMenu(route: ActivatedRouteSnapshot): MenuItem {
     const cfg = route.data;
     console.log("extractMenu", cfg);
-    return cfg && cfg['page-info'] ? <MenuItem>cfg['page-info'] : undefined;
+    return cfg && cfg.pageInfo ? <MenuItem>cfg.pageInfo : undefined;
   }
   */
   ngOnDestroy(): void {

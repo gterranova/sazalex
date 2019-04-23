@@ -13,7 +13,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './dashboard/dashboard.module#DashboardModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Dashboard',
         navigationAction: 'menu',
         icon: 'home',
@@ -30,7 +30,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './users/users.module#UsersModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Users',
         navigationAction: 'arrow_back',
         icon: 'users',
@@ -48,7 +48,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './pages/pages.module#PagesModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Pages',
         navigationAction: 'arrow_back',
         icon: 'users',
@@ -66,7 +66,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './pages/pages.module#PagesModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Pages',
         navigationAction: 'arrow_back',
         icon: 'users',
@@ -84,7 +84,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './people/people.module#PeopleModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Professionals',
         navigationAction: 'arrow_back',
         icon: 'users',
@@ -102,7 +102,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './people/people.module#PeopleModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Professionals',
         navigationAction: 'arrow_back',
         icon: 'users',
@@ -120,7 +120,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './practices/practices.module#PracticesModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Practice Areas',
         navigationAction: 'arrow_back',
         icon: 'info',
@@ -138,7 +138,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './practices/practices.module#PracticesModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Practice Areas',
         navigationAction: 'arrow_back',
         icon: 'info',
@@ -156,7 +156,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './news/news.module#NewsModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'News',
         navigationAction: 'arrow_back',
         icon: 'info',
@@ -174,7 +174,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './news/news.module#NewsModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'News',
         navigationAction: 'arrow_back',
         icon: 'info',
@@ -192,7 +192,7 @@ export const AppRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './files/files.module#FilesModule',
     data: {
-      "page-info": {
+      pageInfo: {
         title: 'Files',
         navigationAction: 'arrow_back',
         icon: 'info',

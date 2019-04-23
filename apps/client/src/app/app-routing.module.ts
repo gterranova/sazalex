@@ -17,14 +17,14 @@ export const routes: Routes = [
     path: 'en/:page',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
     data: {}
   },
   {
     path: 'en/:page/:id',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
     data: {}
   },
   {
@@ -36,14 +36,14 @@ export const routes: Routes = [
     path: 'it/:page',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
     data: {}
   },
   {
     path: 'it/:page/:id',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, 'page-info': PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
     data: {}
   },
   {
