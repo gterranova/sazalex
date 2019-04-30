@@ -1,7 +1,7 @@
 import { Page } from '@sazalex/datasource';
 
 export interface PageComponent {
-    type?: string;
+    name?: string;
     pageInfo?: Page;
     data: any;
 }

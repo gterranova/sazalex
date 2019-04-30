@@ -14,6 +14,7 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { DYNAMIC_COMPONENTS } from './components';
+import { MarkdownEditorModule } from '@sazalex/markdown-editor';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { DYNAMIC_COMPONENTS } from './components';
     RecaptchaModule,
     RecaptchaFormsModule,
     TranslateModule,
-    NgxJsonLdModule
+    NgxJsonLdModule,
+    MarkdownEditorModule,
   ],
   declarations: [
     PageDirective, 

@@ -1,0 +1,34 @@
+:host ::ng-deep {
+    $icon-small-container-size: 16px;
+    $icon-small-size: 8px;
+  
+    .details-container {
+      margin: 10px;
+      padding: 10px;
+      background-color: #fff;
+    }
+  
+    .mat-button-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .mat-button-toggle-label-content {
+        line-height: 36px!important;
+        padding: 0!important;
+    }
+
+    json-schema-form {
+        width: 100%;
+        material-button-widget div button {
+        width: 90%;
+        }
+        fieldset,
+        fieldset > legend {
+        padding-bottom: 20px !important;
+        }
+        textarea {
+        min-height: 400px;
+        }
+    }
+}

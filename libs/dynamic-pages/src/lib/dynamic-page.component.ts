@@ -31,7 +31,7 @@ export class DynamicPageComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: PageComponent) => {
       this.generateTags(data);
-      const dataInfoSource = data.pageInfo ? of(data.pageInfo): this.dataSourceService.getPages(data.type||'default-page');
+      const dataInfoSource = data.pageInfo ? of(data.pageInfo): this.dataSourceService.getPages(data.name||'default-page');
       dataInfoSource.subscribe( pageInfo => {
         const componentRef = this.setupComponent(pageInfo);
         (<PageComponent>componentRef.instance).data = data;

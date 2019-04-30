@@ -5,10 +5,8 @@ declare let require: any;
 
 @Component({
   selector: 'sazalex-edit-item',
-  template: `<div *ngIf="!isLoading" class="mat-elevation-z8 details-container">
-    <sazalex-item-details [form]="jsonFormObject"></sazalex-item-details>
-  </div>`,
-  styles: [``]
+  templateUrl: './edit-item.component.html',
+  styleUrls: ['./edit-item.component.scss']
 })
 export class EditItemComponent implements OnInit {
   data: any;
