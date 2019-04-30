@@ -69,6 +69,32 @@
           "type": "integer",
           "title": "Opacity Top Scroll Position",
           "default": 150
+        },
+        "columns": {
+          "type": "array",
+          "title": "Columns",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {    
+                "type": "string",
+                "title": "Name"
+              },
+              "label": {    
+                "type": "string",
+                "title": "Label"
+              }
+            }
+          }
+        },
+        "form": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
         }
       }
     },

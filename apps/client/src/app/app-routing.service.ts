@@ -8,6 +8,7 @@ import {isPlatformServer} from "@angular/common";
 import { TranslateService } from '@ngx-translate/core';
 
 const PAGE_DATA_KEY = makeStateKey('page_data');
+const PAGE_SCHEMA_KEY = makeStateKey('page_schema');
 const PAGE_INFO_KEY = makeStateKey('page_info');
 
 
@@ -80,6 +81,68 @@ export class PathResolveService implements Resolve<any> {
         this.translate.use(lang);
       }
       return this.getPageData(path)
+    }
+    return of({});
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PathSchemaResolveService implements Resolve<any> {
+  constructor(
+    private router: Router,
+    private dataSourceService: DatasourceService, 
+    private state: TransferState,
+    private translate: TranslateService,
+    @Inject(PLATFORM_ID) private platformId) {}
+
+  getPageSchema(path: string) {
+    const found = this.state.hasKey(PAGE_SCHEMA_KEY);
+    if (found) {
+      const pageData = this.state.get(PAGE_SCHEMA_KEY, {});
+      if (pageData[path]) {
+        //console.log("Restore state", pageData[path]);
+        this.state.remove(PAGE_SCHEMA_KEY);
+        return of(pageData[path]);  
+      }
+    }
+    console.log('get', path, { schema: true });
+    return this.dataSourceService.request('get', path, { schema: true }).pipe( 
+      catchError( (err, caught) => {
+        if (/*err.status === 404 && */ path.split('/').length > 3) {
+          return(this.router.navigate(['', this.translate.currentLang, 'page-not-found']));
+        }
+        return of({});
+      }),
+      tap((results: any) => {
+        if (isPlatformServer(this.platformId)) {
+          //console.log("Saving state", {[path]: results });
+          this.state.set(PAGE_SCHEMA_KEY, {[path]: results });
+        }
+      })
+    );
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const { page, id} = route.params;
+    let lang;
+
+    if (page !== undefined) {
+      if (/^\/(en|it)/.test(state.url)) {
+        lang = state.url.match(/^\/(en|it)/)[1];
+      } else {
+        lang = this.translate.currentLang || this.translate.defaultLang;
+      }
+      let path = `/${lang}/${page}`;
+      if (id !== undefined) {
+        path = `${path}/${id}`;
+      }
+      if (this.translate.currentLang !== lang) {
+        //console.log("Setting language", lang);
+        this.translate.use(lang);
+      }
+      return this.getPageSchema(path)
     }
     return of({});
   }

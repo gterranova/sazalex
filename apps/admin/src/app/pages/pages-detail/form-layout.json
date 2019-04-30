@@ -72,6 +72,22 @@
             "key": "opacityTopScrollPosition",
             "type": "integer",
             "title": "Opacity Top Scroll Position"
+        },
+        {
+            "key": "columns",
+            "add": "Add",
+            "items": [
+                {
+                    "key": "columns[].name",
+                    "type": "text",
+                    "title": "Name"
+                },
+                {
+                    "key": "columns[].label",
+                    "type": "text",
+                    "title": "Label"
+                }
+            ]
         }
     ]
 }

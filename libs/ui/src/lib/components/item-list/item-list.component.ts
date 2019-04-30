@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatasourceService } from '@sazalex/datasource';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of, from, isObservable } from 'rxjs';
 import { Sort, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { EventEmitter } from 'events';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ interface ItemWithId {
 })
 export class ItemListComponent<T extends ItemWithId> implements OnInit, OnDestroy {
   collectionUrl: string;
-  @Input() items: Observable<any>;
+  @Input() items: any;
   @Input() columns: any[];
   @Input() displayedColumns?: any[];
   @Input() sortColumn?: string;
@@ -89,7 +89,7 @@ export class ItemListComponent<T extends ItemWithId> implements OnInit, OnDestro
    * be able to query its view for the initialized sort.
    */
   ngAfterViewInit() {
-    let sub1 = this.items.subscribe(items => {
+    let sub1 = (isObservable(this.items)? this.items : of(this.items)).subscribe((items: T[]) => {
       this._items = items;
       if (this.isLoading) {
         this.data = new MatTableDataSource<T>(items);

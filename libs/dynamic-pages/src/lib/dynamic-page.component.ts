@@ -1,34 +1,15 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input, Inject, PLATFORM_ID, ComponentRef } from '@angular/core';
 import { PageDirective } from './page.directive';
-import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { PageComponent } from './page.component';
 import { ActivatedRoute } from '@angular/router';
-import { NewsPageComponent } from './components/news-page/news-page.component';
-import { NewsDetailComponent } from './components/news-detail/news-detail.component';
-import { PeoplePageComponent } from './components/people-page/people-page.component';
-import { PeopleDetailComponent } from './components/people-detail/people-detail.component';
-import { PracticesDetailComponent } from './components/practices-detail/practices-detail.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
 import { DatasourceService, Page } from '@sazalex/datasource';
 import { of } from 'rxjs';
-import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
+import { PageTypes } from './components';
 
 declare const window: any;
 
-const PageTypes = {
-  'default-page': DefaultPageComponent,
-  'home-page': HomePageComponent,
-  'news-page': NewsPageComponent,
-  'news-detail': NewsDetailComponent,
-  'people-page': PeoplePageComponent,
-  'people-detail': PeopleDetailComponent,
-  'practices-detail': PracticesDetailComponent,
-  'contacts-page': ContactsPageComponent,
-  'page-not-found-page': PageNotFoundPageComponent,
-};
 
 @Component({
   selector: 'sazalex-dynamic-page',

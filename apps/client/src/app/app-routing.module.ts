@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from '@sazalex/ui';
 import { DynamicPagesModule, DynamicPageComponent } from '@sazalex/dynamic-pages';
-import { PathResolveService, TypeResolveService, PageResolveService, HomeGuard } from './app-routing.service';
+import { PathResolveService, PathSchemaResolveService, TypeResolveService, PageResolveService, HomeGuard } from './app-routing.service';
 
 // app
 export const routes: Routes = [
@@ -24,7 +24,8 @@ export const routes: Routes = [
     path: 'en/:page/:id',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService, 
+      schema: PathSchemaResolveService },
     data: {}
   },
   {
@@ -43,7 +44,8 @@ export const routes: Routes = [
     path: 'it/:page/:id',
     pathMatch: 'full',
     component: DynamicPageComponent,
-    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService },
+    resolve: { type: TypeResolveService, pageInfo: PageResolveService, context: PathResolveService, 
+      schema: PathSchemaResolveService },
     data: {}
   },
   {
@@ -63,7 +65,7 @@ export const routes: Routes = [
       onSameUrlNavigation: 'reload'
     })
   ],
-  providers: [TypeResolveService, PageResolveService, PathResolveService, HomeGuard],
+  providers: [TypeResolveService, PageResolveService, PathResolveService, PathSchemaResolveService, HomeGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
