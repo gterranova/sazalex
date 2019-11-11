@@ -10,21 +10,23 @@
 		"PRIVACY_CONSENT": "Ho letto ed accettato l'informativa sulla",
 		"SEND": "Invia",
 		"SUBJECT": "Argomento",
-		"TITLE": "Contatti"
+		"TITLE": "Contatti",
+		"SUCCESS": "Grazie di averci contattato! Risponderemo nel più breve tempo possibile.",
+		"FAIL": "Si è verificato un problema nell'invio dei dati. Riprovate più tardi o scriveteci all'indirizzo info@sazalex.com. Grazie!"
 	},
 	"FOOTER": {
 		"FOLLOW_US": "Seguici su"
 	},
 	"HOME": {
 		"ABOUT_US": "Chi Siamo",
-		"ABOUT_US_CONTENT": "<p>Sani Zangrando nasce dal desiderio dei fondatori <b>Emilio Sani</b> e <b>Stefano Zangrando</b> di dar vita ad uno studio legale indipendente rivolto specificamente al mondo dell'industria e dell'energia.</p><p>Una lunghissima esperienza di lavoro in studi primari ed una importante notorietà nei settori di cui sopra consentono a Sani Zangrando di dare un servizio a vocazione internazionale e innovativo.</p><p>Conosciamo a fondo le normative di riferimento nei settori industriali e dell'energia in cui operiamo e siamo in grado perciò di dare assistenza mirata.</p>",
+		"ABOUT_US_CONTENT": "<p>Lo Studio Legale <b>Sani Zangrando</b> è stato fondato nel 2019 a Milano dagli avvocati italiani Emilio Sani e Stefano Zangrando e si compone di quindici avvocati e professionisti qualificati, con sede a Milano e Roma, dedicati esclusivamente alle esigenze degli operatori del settore energetico e industriale.</p><p>La nostra attenzione al mercato dell'energia e dell'industria, l'ampia esperienza nelle transazioni multinazionali, così come la nostra conoscenza delle norme e dei regolamenti nel settore energetico e industriale e la comprensione tecnica del business dei nostri clienti, ci permettono di fornire ai nostri clienti un servizio innovativo e completo nei loro investimenti e operazioni nazionali ed internazionali.</p>",
 		"LATEST_NEWS": "Ultime news",
 		"PRACTICE_AREAS": "Aree di attività",
 		"PRACTICE_ENERGY": "Diritto dell'energia e dei servizi pubblici",
-		"PRACTICE_ENERGY_SLUG": "assistenza-legale-ad-imprese-industriali",
+		"PRACTICE_ENERGY_SLUG": "diritto-energia-e-servizi-pubblici",
 		"PRACTICE_INDUSTRY": "Assistenza legale ad imprese industriali",
-		"PRACTICE_INDUSTRY_SLUG": "diritto-energia-e-servizi-pubblici",
-		"PRACTICE_LITIGATION": "Contenzioso civile, amministrativo e tributario",
+		"PRACTICE_INDUSTRY_SLUG": "assistenza-legale-ad-imprese-industriali",
+		"PRACTICE_LITIGATION": "Contenzioso civile, amministrativo e tributario ed arbitrati",
 		"PRACTICE_LITIGATION_SLUG": "contenzioso-civile-amministrativo-tributario-e-arbitrati",
 		"TITLE": "Indipendenti, innovativi e internazionali<br>per l'industria e l'energia"
 	},
